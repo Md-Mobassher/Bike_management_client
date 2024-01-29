@@ -1,9 +1,12 @@
 import { Layout } from "antd";
-import { NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
+import { logout } from "@/redux/features/auth/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
 const { Header } = Layout;
 
 const Navbar = () => {
+  const dispatch = useAppDispatch();
+
   return (
     <Header
       style={{
@@ -13,11 +16,8 @@ const Navbar = () => {
       }}
     >
       <div className="flex justify-end items-center h-full w-full px-10 gap-5">
-        <Button className="bg-black">
-          <NavLink to="/login">Login</NavLink>
-        </Button>
-        <Button>
-          <NavLink to="/register">Registration</NavLink>
+        <Button onClick={() => dispatch(logout())} className="bg-black">
+          Logout
         </Button>
       </div>
     </Header>

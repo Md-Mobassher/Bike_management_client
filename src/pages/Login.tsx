@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
@@ -7,7 +13,7 @@ import { setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { verifyToken } from "@/utils/verifyToken";
 import { FieldValues, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Login = () => {
@@ -81,6 +87,14 @@ const Login = () => {
             </div>
           </form>
         </CardContent>
+        <CardFooter>
+          <p className="text-md">
+            You are not register? Please{" "}
+            <NavLink className="text-blue-500 font-semibold" to="/register">
+              Register
+            </NavLink>
+          </p>
+        </CardFooter>
       </Card>
     </div>
   );

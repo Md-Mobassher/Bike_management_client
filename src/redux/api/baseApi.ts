@@ -4,6 +4,7 @@ export const baseApi = createApi({
   reducerPath: "",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://bike-management-server.vercel.app/api/v1",
+    credentials: "include",
   }),
   endpoints: () => ({}),
 });
