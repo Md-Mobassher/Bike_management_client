@@ -1,4 +1,6 @@
-import { Button, Layout } from "antd";
+import { Layout } from "antd";
+import { NavLink } from "react-router-dom";
+import { Button } from "../ui/button";
 const { Header } = Layout;
 
 const Navbar = () => {
@@ -10,9 +12,13 @@ const Navbar = () => {
         borderBottom: "1 px solid gray",
       }}
     >
-      <div className="flex justify-end items-center h-full w-full px-10">
-        <Button>Login</Button>
-        <Button>Registration</Button>
+      <div className="flex justify-end items-center h-full w-full px-10 gap-5">
+        <Button className="bg-black">
+          <NavLink to="/login">Login</NavLink>
+        </Button>
+        <Button>
+          <NavLink to="/register">Registration</NavLink>
+        </Button>
       </div>
     </Header>
   );

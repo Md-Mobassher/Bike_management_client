@@ -4,6 +4,7 @@ import Home from "@/pages/Home";
 import AddBike from "@/pages/AddBike";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
+import UserDashboard from "@/pages/user/UserDashboard";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <UserDashboard />,
       },
       {
         path: "add-Bike",

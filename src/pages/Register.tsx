@@ -19,11 +19,12 @@ import {
 const Register = () => {
   return (
     <div
-      className="flex justify-center items-center h-[100vh] "
+      className="flex justify-center items-center p-20"
       style={{
         backgroundImage:
           "url(https://i.ibb.co/1z94XnJ/lino-9-Pna-Lbcier-E-unsplash-1.jpg)",
         backgroundSize: "cover",
+        backgroundAttachment: "fixed",
       }}
     >
       <Card className="w-[360px]">
