@@ -35,9 +35,7 @@ const Sidebar = () => {
           justifyContent: "center",
           alignItems: "center",
         }}
-      >
-        <h1 className="text-lg font-semibold p-3">Bike Management System</h1>
-      </div>
+      ></div>
       <Menu
         style={{
           background: "#F5F5F5",

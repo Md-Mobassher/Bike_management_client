@@ -6,14 +6,14 @@ const { Content } = Layout;
 
 const MainLayout = () => {
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout>
       <Sidebar />
       <Layout>
         <Navbar />
         <Content
           style={{
             backgroundColor: "white",
-            margin: "10",
+            margin: "10px",
           }}
         >
           <Outlet />

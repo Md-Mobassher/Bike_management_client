@@ -15,20 +15,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useLoginMutation } from "@/redux/features/auth/authApi";
-import { setUser } from "@/redux/features/auth/authSlice";
-import { useAppDispatch } from "@/redux/hooks";
-import { verifyToken } from "@/utils/verifyToken";
+// import { useLoginMutation } from "@/redux/features/auth/authApi";
+// import { setUser } from "@/redux/features/auth/authSlice";
+// import { useAppDispatch } from "@/redux/hooks";
+// import { verifyToken } from "@/utils/verifyToken";
 import { FieldValues, useForm } from "react-hook-form";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { toast } from "sonner";
 
 const Register = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
+  // const dispatch = useAppDispatch();
   const { register, handleSubmit } = useForm();
 
-  const [login] = useLoginMutation();
+  // const [login] = useLoginMutation();
 
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Logging in");
@@ -46,12 +46,12 @@ const Register = () => {
         file: data.file,
       };
       console.log(userInfo);
-      const res = await register(userInfo).unwrap();
+      // const res = await register(userInfo).unwrap();
 
-      const user = verifyToken(res.data.accessToken);
-      dispatch(setUser({ user: user, token: res.data.accessToken }));
-      toast.success("Logged in", { id: toastId, duration: 3000 });
-      navigate(`/`);
+      // const user = verifyToken(res.data.accessToken);
+      // dispatch(setUser({ user: user, token: res.data.accessToken }));
+      // toast.success("Logged in", { id: toastId, duration: 3000 });
+      // navigate(`/`);
     } catch (err) {
       toast.error("Something went wrong", { id: toastId, duration: 3000 });
     }

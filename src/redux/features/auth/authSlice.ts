@@ -33,4 +33,3 @@ export default authSlice.reducer;
 
 export const selectCurrentToken = (state: RootState) => state.auth.token;
 export const selectCurrentUser = (state: RootState) => state.auth.user;
-console.log("inside ", selectCurrentToken);
