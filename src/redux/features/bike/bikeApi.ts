@@ -31,7 +31,7 @@ const bikeApi = baseApi.injectEndpoints({
     deleteABike: builder.mutation({
       query: (id) => ({
         url: `bikes/${id}`,
-        method: "PATCH",
+        method: "PUT",
       }),
     }),
   }),

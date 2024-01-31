@@ -25,20 +25,15 @@ const Sidebar = () => {
       breakpoint="lg"
       collapsedWidth="0"
       style={{
-        background: "#F5F5F5",
+        background: "#FFF",
       }}
     >
-      <div
-        style={{
-          height: "4rem",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      ></div>
+      <div className="flex justify-center items-center h-16 mb-5 border-b-2">
+        <h1 className="text-xl font-bold">Bike Management</h1>
+      </div>
       <Menu
         style={{
-          background: "#F5F5F5",
+          background: "#FFF",
         }}
         mode="inline"
         defaultSelectedKeys={["4"]}

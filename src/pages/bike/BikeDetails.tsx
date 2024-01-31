@@ -1,23 +1,38 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { bike } from "@/types/bike.type";
+import Loading from "@/components/ui/Loading";
+import { useGetSingleBikeQuery } from "@/redux/features/bike/bikeApi";
+import { useParams } from "react-router-dom";
 
-const BikeDetails = ({
-  name,
-  bikeImage,
-  brand,
-  color,
-  model,
-  price,
-  quantity,
-  releaseDate,
-  size,
-  type,
-}: bike) => {
+const BikeDetails = () => {
+  const { id } = useParams();
+  const { data, isLoading, isError } = useGetSingleBikeQuery(id);
+  const {
+    name,
+    bikeImage,
+    brand,
+    color,
+    model,
+    price,
+    quantity,
+    releaseDate,
+    size,
+    type,
+  } = data?.data || {};
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <div>console.log(error);</div>;
+  }
+
   return (
-    <div>
+    <div className="w-full h-full flex justify-center p-10">
       <Card className="w-[800px] ">
         <img
-          className="h-60 w-full border-b-2 mb-4"
+          className="h-80 w-full border-b-2 mb-4"
           src={bikeImage}
           alt={name}
         />
@@ -32,7 +47,12 @@ const BikeDetails = ({
           <p>Size: {size}</p>
           <p>Type: {type}</p>
         </CardContent>
-        <CardFooter></CardFooter>
+        <CardFooter>
+          <div className="flex gap-3">
+            <Button className="bg-yellow-600">Update</Button>
+            <Button className="bg-red-700">Delete</Button>
+          </div>
+        </CardFooter>
       </Card>
     </div>
   );

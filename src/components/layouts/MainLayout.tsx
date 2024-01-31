@@ -6,16 +6,11 @@ const { Content } = Layout;
 
 const MainLayout = () => {
   return (
-    <Layout>
+    <Layout style={{ minHeight: "100vh" }}>
       <Sidebar />
       <Layout>
         <Navbar />
-        <Content
-          style={{
-            backgroundColor: "white",
-            margin: "10px",
-          }}
-        >
+        <Content className="border border-1 bg-slate-50 border-slate-200">
           <Outlet />
         </Content>
       </Layout>
