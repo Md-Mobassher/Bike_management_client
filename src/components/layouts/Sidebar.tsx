@@ -1,23 +1,5 @@
 import { Layout, Menu } from "antd";
-
 const { Sider } = Layout;
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import React from "react";
-
-const items = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  UserOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: React.createElement(icon),
-  label: `nav ${index + 1}`,
-}));
 
 const Sidebar = () => {
   return (
@@ -31,14 +13,7 @@ const Sidebar = () => {
       <div className="flex justify-center items-center h-16 mb-5 border-b-2">
         <h1 className="text-xl font-bold">Bike Management</h1>
       </div>
-      <Menu
-        style={{
-          background: "#FFF",
-        }}
-        mode="inline"
-        defaultSelectedKeys={["4"]}
-        items={items}
-      />
+      <Menu className="bg-white " mode="inline" defaultSelectedKeys={["4"]} />
     </Sider>
   );
 };

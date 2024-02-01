@@ -5,14 +5,19 @@ import { bike } from "@/types/bike.type";
 import Loading from "@/components/ui/Loading";
 
 const UserDashboard = () => {
-  const { data: bikes, isLoading, isError } = useGetAllBikesQuery(undefined);
+  const {
+    data: bikes,
+    isLoading,
+    isError,
+    error,
+  } = useGetAllBikesQuery(undefined);
 
   if (isLoading) {
     return <Loading />;
   }
 
   if (isError) {
-    return <div>Error fetching bikes. console.log(error);</div>;
+    return console.log(error);
   }
 
   return (

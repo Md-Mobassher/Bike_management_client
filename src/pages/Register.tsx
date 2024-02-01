@@ -8,33 +8,29 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-// import { useLoginMutation } from "@/redux/features/auth/authApi";
-// import { setUser } from "@/redux/features/auth/authSlice";
-// import { useAppDispatch } from "@/redux/hooks";
-// import { verifyToken } from "@/utils/verifyToken";
+import { useRegisterMutation } from "@/redux/features/auth/authApi";
+import { TRegister } from "@/types/user.type";
 import { FieldValues, useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Register = () => {
-  // const navigate = useNavigate();
-  // const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
-  // const [login] = useLoginMutation();
+  const [registerUser] = useRegisterMutation();
 
   const onSubmit = async (data: FieldValues) => {
-    const toastId = toast.loading("Logging in");
+    const toastId = toast.loading("Creating User");
 
     try {
-      const userInfo = {
+      const formData = new FormData();
+      // Append files to FormData
+      for (const file of data.files) {
+        formData.append("file", file);
+      }
+
+      const userInfo: TRegister = {
         name: data.name,
         email: data.email,
         password: data.password,
@@ -43,17 +39,22 @@ const Register = () => {
         dateOfBirth: data.dateOfBirth,
         presentAddress: data.presentAddress,
         permanentAddress: data.permanentAddress,
-        file: data.file,
       };
-      console.log(userInfo);
-      // const res = await register(userInfo).unwrap();
+      formData.append("data", JSON.stringify(userInfo));
 
-      // const user = verifyToken(res.data.accessToken);
-      // dispatch(setUser({ user: user, token: res.data.accessToken }));
-      // toast.success("Logged in", { id: toastId, duration: 3000 });
-      // navigate(`/`);
+      await registerUser(formData).unwrap();
+
+      toast.success("User Created Successfull.", {
+        id: toastId,
+        duration: 3000,
+      });
+      navigate(`/login`);
     } catch (err) {
-      toast.error("Something went wrong", { id: toastId, duration: 3000 });
+      console.log(err);
+      toast.error("Failed to Create User. Something went wrong", {
+        id: toastId,
+        duration: 3000,
+      });
     }
   };
 
@@ -119,7 +120,7 @@ const Register = () => {
 
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="gender">Gender</Label>
-                <Select>
+                {/* <Select>
                   <SelectTrigger {...register("gender")} id="gender">
                     <SelectValue placeholder="Your Gender" />
                   </SelectTrigger>
@@ -128,7 +129,15 @@ const Register = () => {
                     <SelectItem value="female">Female</SelectItem>
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
-                </Select>
+                </Select> */}
+                <select
+                  className="input border rounded-lg p-2"
+                  {...register("gender", { required: true })}
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
 
               <div className="flex flex-col space-y-1.5">
@@ -160,7 +169,7 @@ const Register = () => {
                 <Label htmlFor="file">Profile Image</Label>
                 <Input
                   type="file"
-                  {...register("file")}
+                  {...register("files")}
                   id="file"
                   placeholder="Your Profile Image"
                 />

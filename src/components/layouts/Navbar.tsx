@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { logout } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { NavLink } from "react-router-dom";
+import AddBike from "@/pages/bike/AddBike";
 const { Header } = Layout;
 
 const Navbar = () => {
@@ -16,16 +17,18 @@ const Navbar = () => {
         borderBottom: "1 px solid gray",
       }}
     >
-      <div className="flex justify-between items-center h-full w-full px-10 gap-5">
-        <div></div>
-        <div className="gap-3">
-          <NavLink
-            className="cursor-pointer text-md font-semibold mr-5 px-3 py-2 "
-            to="/"
+      <div className="flex justify-between items-center h-full w-full">
+        <div className="ml-auto px-10 gap-5">
+          <Button className="bg-white text-black hover:bg-green-600 hover:text-white mr-3">
+            <NavLink className="hover:text-white" to="/">
+              Home
+            </NavLink>
+          </Button>
+          <AddBike />
+          <Button
+            onClick={() => dispatch(logout())}
+            className="bg-white text-black hover:bg-green-600 hover:text-white border ml-5"
           >
-            Home
-          </NavLink>
-          <Button onClick={() => dispatch(logout())} className="">
             Logout
           </Button>
         </div>

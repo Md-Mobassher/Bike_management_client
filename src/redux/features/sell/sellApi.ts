@@ -9,14 +9,13 @@ const sellApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
-    getSellHistory: builder.mutation({
-      query: (userInfo) => ({
+    getSellHistory: builder.query({
+      query: () => ({
         url: "/sales-history/:interval",
         method: "GET",
-        body: userInfo,
       }),
     }),
   }),
 });
 
-export const { useSellABikeMutation, useGetSellHistoryMutation } = sellApi;
+export const { useSellABikeMutation, useGetSellHistoryQuery } = sellApi;

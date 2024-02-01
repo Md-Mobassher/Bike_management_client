@@ -1,30 +1,19 @@
 import { RootState } from "@/redux/store";
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface IBike {}
-
-interface IInitialState {
-  bikes: null | IBike[];
-}
-const initialState: IInitialState = {
-  bikes: null,
+const initialState = {
+  bikes: [],
+  status: "idle",
+  error: null,
+  selectedBike: null,
 };
 
 export const bikeSlice = createSlice({
   name: "bike",
   initialState,
   reducers: {
-    addBike: (state, action) => {
-      const { bikes } = action.payload;
-      state.bikes = bikes;
-    },
-    deleteBike: (state, action) => {
-      const { bikes } = action.payload;
-      state.bikes = bikes;
-    },
-    updateBike: (state, action) => {
-      const { bikes } = action.payload;
-      state.bikes = bikes;
+    clearSelectedBike: (state) => {
+      state.selectedBike = null;
     },
   },
 });

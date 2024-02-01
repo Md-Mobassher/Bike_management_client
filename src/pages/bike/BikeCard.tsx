@@ -22,11 +22,9 @@ const BikeCard = ({
   };
 
   // delete a bike
-  const [deleteBike, { isLoading, isError, isSuccess }] =
-    useDeleteABikeMutation();
+  const [deleteBike, { isLoading, isError }] = useDeleteABikeMutation();
 
   const handleDeleteBike = async (id: string) => {
-    console.log(id);
     const toastId = toast.loading("Deleteing Bike");
     {
       isLoading &&
@@ -35,13 +33,11 @@ const BikeCard = ({
 
     try {
       const res = await deleteBike(id);
-      console.log(res);
-      {
-        isSuccess &&
-          toast.success("Successfully Delete Bike.", {
-            id: toastId,
-            duration: 3000,
-          });
+      if (res?.data?.success === true) {
+        toast.success("Successfully Delete Bike.", {
+          id: toastId,
+          duration: 3000,
+        });
       }
     } catch (error) {
       console.error("Error deleting bike:", error);
@@ -71,7 +67,7 @@ const BikeCard = ({
         <Button className="bg-green-600" onClick={() => handleBikeDetails(_id)}>
           Details
         </Button>
-        <Button className="bg-yellow-600">Update</Button>
+        <Button className="bg-yellow-600">Edit</Button>
         <Button className="bg-red-700" onClick={() => handleDeleteBike(_id)}>
           Delete
         </Button>
