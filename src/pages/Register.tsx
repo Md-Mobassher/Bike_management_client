@@ -120,16 +120,6 @@ const Register = () => {
 
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="gender">Gender</Label>
-                {/* <Select>
-                  <SelectTrigger {...register("gender")} id="gender">
-                    <SelectValue placeholder="Your Gender" />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    <SelectItem value="male">Male</SelectItem>
-                    <SelectItem value="female">Female</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
-                  </SelectContent>
-                </Select> */}
                 <select
                   className="input border rounded-lg p-2"
                   {...register("gender", { required: true })}

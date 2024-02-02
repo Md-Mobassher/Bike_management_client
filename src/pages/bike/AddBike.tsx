@@ -1,52 +1,54 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useAddBikeMutation } from "@/redux/features/bike/bikeApi";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const AddBikeModal = () => {
   const { register, handleSubmit } = useForm();
-  const [addBike, { isError, isLoading }] = useAddBikeMutation();
-  // const dispatch = useAppDispatch();
+  const [addBike] = useAddBikeMutation();
 
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Adding Bike to Database");
 
     try {
+      const formData = new FormData();
+      // Append files to FormData
+      for (const file of data.file) {
+        formData.append("file", file);
+      }
       const bikeInfo = {
         name: data.name,
-        price: data.price,
-        quantity: data.quantity,
+        price: Number(data.price),
+        quantity: Number(data.quantity),
         releaseDate: data.releaseDate,
         brand: data.brand,
         model: data.model,
         type: data.type,
         size: data.size,
         color: data.color,
-        file: data.file,
       };
-      console.log(bikeInfo);
-      const res = await addBike(bikeInfo).unwrap();
-      console.log(res);
+
+      formData.append("data", JSON.stringify(bikeInfo));
+      await addBike(formData).unwrap();
+
+      toast.success("Bike Added Successfully.", {
+        id: toastId,
+        duration: 3000,
+      });
     } catch (err) {
-      toast.error("Something went wrong", { id: toastId, duration: 3000 });
+      toast.error("Failed to add bike. Something went wrong", {
+        id: toastId,
+        duration: 3000,
+      });
     }
   };
 
@@ -130,20 +132,14 @@ const AddBikeModal = () => {
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="size">Size</Label>
-            <Select>
-              <SelectTrigger
-                className="col-span-3"
-                {...register("size")}
-                id="size"
-              >
-                <SelectValue placeholder="Bike Size" />
-              </SelectTrigger>
-              <SelectContent position="popper">
-                <SelectItem value="small">Small</SelectItem>
-                <SelectItem value="medium">Medium</SelectItem>
-                <SelectItem value="large">Large</SelectItem>
-              </SelectContent>
-            </Select>
+            <select
+              className="input border rounded-lg p-2 col-span-3"
+              {...register("size", { required: true })}
+            >
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="color">Color</Label>

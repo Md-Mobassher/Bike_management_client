@@ -1,4 +1,5 @@
 import { baseApi } from "../../api/baseApi";
+import { TagDescription } from "@reduxjs/toolkit/query/react";
 
 const bikeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -14,6 +15,9 @@ const bikeApi = baseApi.injectEndpoints({
         url: "/bikes",
         method: "GET",
       }),
+      providesTags: (result, error, id): TagDescription[] => [
+        { type: "Bike", id: "All" },
+      ],
     }),
     getSingleBike: builder.query({
       query: (id) => ({

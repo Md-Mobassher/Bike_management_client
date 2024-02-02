@@ -4,6 +4,7 @@ import { useDeleteABikeMutation } from "@/redux/features/bike/bikeApi";
 import { bike } from "@/types/bike.type";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import SellBikeModal from "../sell/SellABike";
 
 const BikeCard = ({
   _id,
@@ -63,11 +64,12 @@ const BikeCard = ({
         <p>Color: {color}</p>
         <p>Model: {model}</p>
       </CardContent>
-      <CardFooter className="gap-3">
+      <CardFooter className="flex justify-between">
         <Button className="bg-green-600" onClick={() => handleBikeDetails(_id)}>
           Details
         </Button>
         <Button className="bg-yellow-600">Edit</Button>
+        <SellBikeModal id={_id} />
         <Button className="bg-red-700" onClick={() => handleDeleteBike(_id)}>
           Delete
         </Button>
