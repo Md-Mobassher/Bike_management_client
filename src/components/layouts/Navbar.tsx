@@ -4,6 +4,8 @@ import { logout } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { NavLink } from "react-router-dom";
 import AddBike from "@/pages/bike/AddBike";
+import SalesHistoryItem from "@/pages/sell/SalesHistoryItems";
+
 const { Header } = Layout;
 
 const Navbar = () => {
@@ -25,6 +27,7 @@ const Navbar = () => {
             </NavLink>
           </Button>
           <AddBike />
+          <SalesHistoryItem />
           <Button
             onClick={() => dispatch(logout())}
             className="bg-white text-black hover:bg-green-600 hover:text-white border ml-5"

@@ -5,6 +5,7 @@ import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import UserDashboard from "@/pages/bike/UserDashboard";
 import BikeDetails from "@/pages/bike/BikeDetails";
+import SalesHistory from "@/pages/sell/SalesHistory";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "add-Bike",
         element: <AddBike />,
+      },
+      {
+        path: "sales-history",
+        element: <SalesHistory />,
       },
     ],
   },

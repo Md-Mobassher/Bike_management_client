@@ -15,9 +15,6 @@ const bikeApi = baseApi.injectEndpoints({
         url: "/bikes",
         method: "GET",
       }),
-      providesTags: (result, error, id): TagDescription[] => [
-        { type: "Bike", id: "All" },
-      ],
     }),
     getSingleBike: builder.query({
       query: (id) => ({

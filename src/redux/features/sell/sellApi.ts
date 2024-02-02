@@ -10,8 +10,8 @@ const sellApi = baseApi.injectEndpoints({
       }),
     }),
     getSellHistory: builder.query({
-      query: () => ({
-        url: "/sales-history/:interval",
+      query: (interval) => ({
+        url: `/sales-history/${interval}`,
         method: "GET",
       }),
     }),

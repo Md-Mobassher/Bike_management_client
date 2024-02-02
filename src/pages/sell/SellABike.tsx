@@ -29,14 +29,14 @@ const SellBikeModal = ({ id }) => {
       };
 
       const res = await sellBike(sellInfo).unwrap();
-      console.log(res);
 
-      toast.success("Bike Sold Successfully.", {
+      toast.success(res?.message, {
         id: toastId,
         duration: 3000,
       });
     } catch (err) {
-      toast.error("Failed to Sold bike. Something went wrong", {
+      console.log(err);
+      toast.error(err?.data?.message, {
         id: toastId,
         duration: 3000,
       });
