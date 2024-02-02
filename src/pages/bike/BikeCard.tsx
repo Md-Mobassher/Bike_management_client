@@ -5,6 +5,7 @@ import { bike } from "@/types/bike.type";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import SellBikeModal from "../sell/SellABike";
+import UpdateBikeModal from "./UpdateBike";
 
 const BikeCard = ({
   _id,
@@ -17,14 +18,14 @@ const BikeCard = ({
   quantity,
 }: bike) => {
   const navigate = useNavigate();
+  const [deleteBike, { isLoading, isError }] = useDeleteABikeMutation();
+
   // bike details
   const handleBikeDetails = (id: string) => {
     navigate(`/bike/${id}`);
   };
 
   // delete a bike
-  const [deleteBike, { isLoading, isError }] = useDeleteABikeMutation();
-
   const handleDeleteBike = async (id: string) => {
     const toastId = toast.loading("Deleteing Bike");
     {
@@ -68,7 +69,7 @@ const BikeCard = ({
         <Button className="bg-green-600" onClick={() => handleBikeDetails(_id)}>
           Details
         </Button>
-        <Button className="bg-yellow-600">Edit</Button>
+        <UpdateBikeModal id={_id} />
         <SellBikeModal id={_id} />
         <Button className="bg-red-700" onClick={() => handleDeleteBike(_id)}>
           Delete
