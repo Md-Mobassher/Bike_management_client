@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 
 const SalesHistory = () => {
   const location = useLocation();
-  const salesHistory = location.state?.sells || {};
+  const salesHistory = location.state?.sells || [];
   console.log(salesHistory);
 
   return (

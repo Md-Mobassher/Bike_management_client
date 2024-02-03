@@ -17,13 +17,19 @@ const UserDashboard = () => {
   }
 
   if (isError) {
-    return console.log(error);
+    console.error(error);
+    return <div>Error loading bikes. Please try again later.</div>;
+  }
+
+  if (!bikes?.success) {
+    return <div>No bikes available.</div>;
   }
 
   return (
     <div className="p-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-      {bikes &&
-        bikes.data.map((bike: bike) => <BikeCard key={bike._id} {...bike} />)}
+      {bikes.data.map((bike: bike) => (
+        <BikeCard key={bike?._id} {...bike} />
+      ))}
     </div>
   );
 };

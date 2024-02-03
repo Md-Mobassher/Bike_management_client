@@ -10,7 +10,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { toast } from "sonner";
 
 const items = [
   {
@@ -38,8 +37,8 @@ const FilterBike = () => {
     },
   });
 
-  function onSubmit(data: any) {
-    toast.loading("Filtering Bikes");
+  function onSubmit() {
+    // console.log("");
   }
 
   return (

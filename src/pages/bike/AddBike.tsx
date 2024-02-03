@@ -8,13 +8,17 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useAddBikeMutation } from "@/redux/features/bike/bikeApi";
+import {
+  useAddBikeMutation,
+  useGetAllBikesQuery,
+} from "@/redux/features/bike/bikeApi";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const AddBikeModal = () => {
   const { register, handleSubmit } = useForm();
   const [addBike] = useAddBikeMutation();
+  const { refetch } = useGetAllBikesQuery(undefined);
 
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Adding Bike to Database");
@@ -44,6 +48,7 @@ const AddBikeModal = () => {
         id: toastId,
         duration: 3000,
       });
+      refetch();
     } catch (err) {
       toast.error("Failed to add bike. Something went wrong", {
         id: toastId,

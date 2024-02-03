@@ -20,8 +20,8 @@ const Navbar = () => {
       }}
     >
       <div className="flex justify-between items-center h-full w-full">
-        <div className="ml-auto px-10 gap-5">
-          <Button className="bg-white text-black hover:bg-green-600 hover:text-white mr-3">
+        <div className="ml-auto lg:px-10 lg:gap-5 gap-2">
+          <Button className="bg-white text-black hover:bg-green-600 hover:text-white lg:mr-3">
             <NavLink className="hover:text-white" to="/">
               Home
             </NavLink>

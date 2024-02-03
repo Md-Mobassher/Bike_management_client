@@ -1,6 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { useDeleteABikeMutation } from "@/redux/features/bike/bikeApi";
+import {
+  useDeleteABikeMutation,
+  useGetAllBikesQuery,
+} from "@/redux/features/bike/bikeApi";
 import { bike } from "@/types/bike.type";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -18,7 +21,10 @@ const BikeCard = ({
   quantity,
 }: bike) => {
   const navigate = useNavigate();
-  const [deleteBike, { isLoading, isError }] = useDeleteABikeMutation();
+
+  const { refetch } = useGetAllBikesQuery(undefined);
+  const [deleteABike, { isLoading, isError, isSuccess }] =
+    useDeleteABikeMutation();
 
   // bike details
   const handleBikeDetails = (id: string) => {
@@ -34,18 +40,20 @@ const BikeCard = ({
     }
 
     try {
-      const res = await deleteBike(id);
-      if (res?.data?.success === true) {
-        toast.success("Successfully Delete Bike.", {
-          id: toastId,
-          duration: 3000,
-        });
+      await deleteABike(id);
+      {
+        isSuccess &&
+          toast.loading("Deleteing Bike", { id: toastId, duration: 3000 });
+        refetch();
       }
     } catch (error) {
       console.error("Error deleting bike:", error);
       {
         isError &&
-          toast.error("Something went wrong", { id: toastId, duration: 3000 });
+          toast.error("Bike delete failed. Something went wrong", {
+            id: toastId,
+            duration: 3000,
+          });
       }
     }
   };
@@ -65,7 +73,7 @@ const BikeCard = ({
         <p>Color: {color}</p>
         <p>Model: {model}</p>
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex justify-between gap-2 flex-wrap">
         <Button className="bg-green-600" onClick={() => handleBikeDetails(_id)}>
           Details
         </Button>

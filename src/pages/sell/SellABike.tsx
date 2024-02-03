@@ -9,11 +9,13 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useGetAllBikesQuery } from "@/redux/features/bike/bikeApi";
 import { useSellABikeMutation } from "@/redux/features/sell/sellApi";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-const SellBikeModal = ({ id }) => {
+const SellBikeModal: React.FC<{ id: string }> = ({ id }) => {
+  const { refetch } = useGetAllBikesQuery(undefined);
   const { register, handleSubmit } = useForm();
   const [sellBike] = useSellABikeMutation();
 
@@ -34,9 +36,10 @@ const SellBikeModal = ({ id }) => {
         id: toastId,
         duration: 3000,
       });
+      refetch();
     } catch (err) {
       console.log(err);
-      toast.error(err?.data?.message, {
+      toast.error(" Failed to sell bike .An error occurred", {
         id: toastId,
         duration: 3000,
       });

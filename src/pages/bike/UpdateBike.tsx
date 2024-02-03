@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,15 +10,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
+  useGetAllBikesQuery,
   useGetSingleBikeQuery,
   useUpdateABikeMutation,
 } from "@/redux/features/bike/bikeApi";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-const UpdateBikeModal = ({ id }) => {
+const UpdateBikeModal = ({ id }: any) => {
   const { register, handleSubmit } = useForm();
   const [updateBike] = useUpdateABikeMutation();
+  const { refetch } = useGetAllBikesQuery(undefined);
   const { data } = useGetSingleBikeQuery(id);
   const {
     name,
@@ -47,15 +50,13 @@ const UpdateBikeModal = ({ id }) => {
         color: data.color,
       };
 
-      console.log(updatedBike);
-
       const res = await updateBike({ id, updatedBike }).unwrap();
-      console.log(res);
 
-      toast.success("Bike Update Successfully.", {
+      toast.success(res?.message || "Bike Update Successfully.", {
         id: toastId,
         duration: 3000,
       });
+      refetch();
     } catch (err) {
       toast.error("Failed to update bike. Something went wrong", {
         id: toastId,
