@@ -1,4 +1,10 @@
-# Bike Management Dashboard
+# Bike Management System
+
+### Github repo link:
+
+- https://github.com/Md-Mobassher/Bike_management_client
+
+### Live Link: https://bike-management-client-alpha.vercel.app
 
 ## Product Information
 
