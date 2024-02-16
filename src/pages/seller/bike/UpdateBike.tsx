@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,27 +10,33 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  useAddBikeMutation,
-  useGetAllBikesQuery,
+  useGetSingleBikeQuery,
+  useUpdateABikeMutation,
 } from "@/redux/features/bike/bikeApi";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-const AddBikeModal = () => {
+const UpdateBikeModal = ({ id }: any) => {
   const { register, handleSubmit } = useForm();
-  const [addBike] = useAddBikeMutation();
-  const { refetch } = useGetAllBikesQuery(undefined);
+  const [updateBike] = useUpdateABikeMutation();
+  const { data } = useGetSingleBikeQuery(id);
+  const {
+    name,
+    brand,
+    color,
+    model,
+    price,
+    quantity,
+    releaseDate,
+    size,
+    type,
+  } = data?.data || {};
 
   const onSubmit = async (data: FieldValues) => {
-    const toastId = toast.loading("Adding Bike to Database");
+    const toastId = toast.loading("Updating Bike");
 
     try {
-      const formData = new FormData();
-      // Append files to FormData
-      for (const file of data.file) {
-        formData.append("file", file);
-      }
-      const bikeInfo = {
+      const updatedBike = {
         name: data.name,
         price: Number(data.price),
         quantity: Number(data.quantity),
@@ -41,16 +48,14 @@ const AddBikeModal = () => {
         color: data.color,
       };
 
-      formData.append("data", JSON.stringify(bikeInfo));
-      await addBike(formData).unwrap();
+      const res = await updateBike({ id, updatedBike }).unwrap();
 
-      toast.success("Bike Added Successfully.", {
+      toast.success(res?.message || "Bike Update Successfully.", {
         id: toastId,
         duration: 3000,
       });
-      refetch();
     } catch (err) {
-      toast.error("Failed to add bike. Something went wrong", {
+      toast.error("Failed to update bike. Something went wrong", {
         id: toastId,
         duration: 3000,
       });
@@ -60,13 +65,11 @@ const AddBikeModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-white text-black hover:bg-green-600 hover:text-white">
-          Add Bike
-        </Button>
+        <Button className="bg-orange-700">Edit</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add Bike Details</DialogTitle>
+          <DialogTitle>Update Bike Details</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
@@ -74,7 +77,7 @@ const AddBikeModal = () => {
             <Input
               className="col-span-3"
               id="name"
-              placeholder="Bike Name"
+              defaultValue={name}
               {...register("name")}
             />
           </div>
@@ -84,7 +87,7 @@ const AddBikeModal = () => {
               type="number"
               className="col-span-3"
               id="price"
-              placeholder="Bike Price"
+              defaultValue={price}
               {...register("price")}
             />
           </div>
@@ -94,7 +97,7 @@ const AddBikeModal = () => {
               type="number"
               className="col-span-3"
               id="quantity"
-              placeholder="Bike Quantity"
+              defaultValue={quantity}
               {...register("quantity")}
             />
           </div>
@@ -104,7 +107,7 @@ const AddBikeModal = () => {
               type="date"
               className="col-span-3"
               id="releaseDate"
-              placeholder="Bike Release Date"
+              defaultValue={releaseDate}
               {...register("releaseDate")}
             />
           </div>
@@ -113,7 +116,7 @@ const AddBikeModal = () => {
             <Input
               className="col-span-3"
               id="brand"
-              placeholder="Bike Brand Name"
+              defaultValue={brand}
               {...register("brand")}
             />
           </div>
@@ -122,7 +125,7 @@ const AddBikeModal = () => {
             <Input
               className="col-span-3"
               id="model"
-              placeholder="Bike Model No"
+              defaultValue={model}
               {...register("model")}
             />
           </div>
@@ -131,7 +134,7 @@ const AddBikeModal = () => {
             <Input
               className="col-span-3"
               id="type"
-              placeholder="Bike Type"
+              defaultValue={type}
               {...register("type")}
             />
           </div>
@@ -139,6 +142,7 @@ const AddBikeModal = () => {
             <Label htmlFor="size">Size</Label>
             <select
               className="input border rounded-lg p-2 col-span-3"
+              defaultValue={size}
               {...register("size", { required: true })}
             >
               <option value="small">Small</option>
@@ -151,7 +155,7 @@ const AddBikeModal = () => {
             <Input
               className="col-span-3"
               id="color"
-              placeholder="Bike Color"
+              defaultValue={color}
               {...register("color")}
             />
           </div>
@@ -166,8 +170,8 @@ const AddBikeModal = () => {
             />
           </div>
           <div className="flex justify-end">
-            <Button className="" type="submit">
-              Add Bike
+            <Button className="bg-orange-500" type="submit">
+              Update Bike
             </Button>
           </div>
         </form>
@@ -176,4 +180,4 @@ const AddBikeModal = () => {
   );
 };
 
-export default AddBikeModal;
+export default UpdateBikeModal;

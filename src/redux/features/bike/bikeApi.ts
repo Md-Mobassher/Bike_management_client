@@ -1,7 +1,36 @@
+import { TMeta, TQueryParam, TResponseRedux } from "@/types/global.type";
 import { baseApi } from "../../api/baseApi";
+import { TBike } from "@/types/bike.type";
 
 const bikeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    getAllBikes: builder.query({
+      query: (args) => {
+        console.log(args);
+        const params = new URLSearchParams();
+        if (args) {
+          args.forEach((item: TQueryParam) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+
+        return {
+          url: "/bikes",
+          method: "GET",
+          params: params,
+        };
+      },
+      providesTags: ["bike"],
+      transformResponse: (
+        response: TResponseRedux<{ meta: TMeta; result: TBike[] }>
+      ) => {
+        return {
+          data: response?.data?.result,
+          meta: response?.data?.meta,
+        };
+      },
+    }),
+
     addBike: builder.mutation({
       query: (newBike) => ({
         url: "/bikes",
@@ -10,14 +39,7 @@ const bikeApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["bike"],
     }),
-    getAllBikes: builder.query({
-      query: () => ({
-        url: "/bikes",
-        method: "GET",
-        providesTags: ["Bikes"],
-      }),
-      providesTags: ["bike"],
-    }),
+
     getSingleBike: builder.query({
       query: (id) => ({
         url: `/bikes/${id}`,

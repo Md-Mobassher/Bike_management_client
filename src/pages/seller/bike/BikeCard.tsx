@@ -7,7 +7,7 @@ import {
 import { bike } from "@/types/bike.type";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import SellBikeModal from "../sell/SellABike";
+import SellBikeModal from "../sales/SellABike";
 import UpdateBikeModal from "./UpdateBike";
 
 const BikeCard = ({

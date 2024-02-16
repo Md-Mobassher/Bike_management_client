@@ -1,5 +1,5 @@
 import { Layout, Menu } from "antd";
-import FilterBike from "../../pages/bike/FilterBike";
+import FilterBike from "../../pages/seller/bike/FilterBike";
 const { Sider } = Layout;
 
 const Sidebar = () => {

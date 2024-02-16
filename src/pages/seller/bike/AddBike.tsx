@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,36 +8,24 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  useGetAllBikesQuery,
-  useGetSingleBikeQuery,
-  useUpdateABikeMutation,
-} from "@/redux/features/bike/bikeApi";
+import { useAddBikeMutation } from "@/redux/features/bike/bikeApi";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-const UpdateBikeModal = ({ id }: any) => {
+const AddBikeModal = () => {
   const { register, handleSubmit } = useForm();
-  const [updateBike] = useUpdateABikeMutation();
-  const { refetch } = useGetAllBikesQuery(undefined);
-  const { data } = useGetSingleBikeQuery(id);
-  const {
-    name,
-    brand,
-    color,
-    model,
-    price,
-    quantity,
-    releaseDate,
-    size,
-    type,
-  } = data?.data || {};
+  const [addBike] = useAddBikeMutation();
 
   const onSubmit = async (data: FieldValues) => {
-    const toastId = toast.loading("Updating Bike");
+    const toastId = toast.loading("Adding Bike to Database");
 
     try {
-      const updatedBike = {
+      const formData = new FormData();
+      // Append files to FormData
+      for (const file of data.file) {
+        formData.append("file", file);
+      }
+      const bikeInfo = {
         name: data.name,
         price: Number(data.price),
         quantity: Number(data.quantity),
@@ -50,15 +37,15 @@ const UpdateBikeModal = ({ id }: any) => {
         color: data.color,
       };
 
-      const res = await updateBike({ id, updatedBike }).unwrap();
+      formData.append("data", JSON.stringify(bikeInfo));
+      await addBike(formData).unwrap();
 
-      toast.success(res?.message || "Bike Update Successfully.", {
+      toast.success("Bike Added Successfully.", {
         id: toastId,
         duration: 3000,
       });
-      refetch();
     } catch (err) {
-      toast.error("Failed to update bike. Something went wrong", {
+      toast.error("Failed to add bike. Something went wrong", {
         id: toastId,
         duration: 3000,
       });
@@ -68,11 +55,13 @@ const UpdateBikeModal = ({ id }: any) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-orange-700">Edit</Button>
+        <Button className="bg-white text-black hover:bg-green-600 hover:text-white">
+          Add Bike
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Update Bike Details</DialogTitle>
+          <DialogTitle>Add Bike Details</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
@@ -80,7 +69,7 @@ const UpdateBikeModal = ({ id }: any) => {
             <Input
               className="col-span-3"
               id="name"
-              defaultValue={name}
+              placeholder="Bike Name"
               {...register("name")}
             />
           </div>
@@ -90,7 +79,7 @@ const UpdateBikeModal = ({ id }: any) => {
               type="number"
               className="col-span-3"
               id="price"
-              defaultValue={price}
+              placeholder="Bike Price"
               {...register("price")}
             />
           </div>
@@ -100,7 +89,7 @@ const UpdateBikeModal = ({ id }: any) => {
               type="number"
               className="col-span-3"
               id="quantity"
-              defaultValue={quantity}
+              placeholder="Bike Quantity"
               {...register("quantity")}
             />
           </div>
@@ -110,7 +99,7 @@ const UpdateBikeModal = ({ id }: any) => {
               type="date"
               className="col-span-3"
               id="releaseDate"
-              defaultValue={releaseDate}
+              placeholder="Bike Release Date"
               {...register("releaseDate")}
             />
           </div>
@@ -119,7 +108,7 @@ const UpdateBikeModal = ({ id }: any) => {
             <Input
               className="col-span-3"
               id="brand"
-              defaultValue={brand}
+              placeholder="Bike Brand Name"
               {...register("brand")}
             />
           </div>
@@ -128,7 +117,7 @@ const UpdateBikeModal = ({ id }: any) => {
             <Input
               className="col-span-3"
               id="model"
-              defaultValue={model}
+              placeholder="Bike Model No"
               {...register("model")}
             />
           </div>
@@ -137,7 +126,7 @@ const UpdateBikeModal = ({ id }: any) => {
             <Input
               className="col-span-3"
               id="type"
-              defaultValue={type}
+              placeholder="Bike Type"
               {...register("type")}
             />
           </div>
@@ -145,7 +134,6 @@ const UpdateBikeModal = ({ id }: any) => {
             <Label htmlFor="size">Size</Label>
             <select
               className="input border rounded-lg p-2 col-span-3"
-              defaultValue={size}
               {...register("size", { required: true })}
             >
               <option value="small">Small</option>
@@ -158,7 +146,7 @@ const UpdateBikeModal = ({ id }: any) => {
             <Input
               className="col-span-3"
               id="color"
-              defaultValue={color}
+              placeholder="Bike Color"
               {...register("color")}
             />
           </div>
@@ -173,8 +161,8 @@ const UpdateBikeModal = ({ id }: any) => {
             />
           </div>
           <div className="flex justify-end">
-            <Button className="bg-orange-500" type="submit">
-              Update Bike
+            <Button className="" type="submit">
+              Add Bike
             </Button>
           </div>
         </form>
@@ -183,4 +171,4 @@ const UpdateBikeModal = ({ id }: any) => {
   );
 };
 
-export default UpdateBikeModal;
+export default AddBikeModal;

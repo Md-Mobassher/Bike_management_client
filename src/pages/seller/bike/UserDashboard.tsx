@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetAllBikesQuery } from "@/redux/features/bike/bikeApi";
 import BikeCard from "./BikeCard";
-import { bike } from "@/types/bike.type";
 import Loading from "@/components/ui/Loading";
+import { TBike } from "@/types/bike.type";
 
 const UserDashboard = () => {
   const {
@@ -12,6 +12,7 @@ const UserDashboard = () => {
     error,
   } = useGetAllBikesQuery(undefined);
 
+  console.log(bikes);
   if (isLoading) {
     return <Loading />;
   }
@@ -21,15 +22,11 @@ const UserDashboard = () => {
     return <div>Error loading bikes. Please try again later.</div>;
   }
 
-  if (!bikes?.success) {
-    return <div>No bikes available.</div>;
-  }
-
   return (
     <div className="p-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-      {/* {bikes?.data?.map((bike: bike) => (
+      {bikes?.data?.map((bike: TBike) => (
         <BikeCard key={bike?._id} {...bike} />
-      ))} */}
+      ))}
     </div>
   );
 };

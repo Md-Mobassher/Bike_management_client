@@ -20,11 +20,6 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  // const defaultValues = {
-  //   email: "mobassher@gmail.com",
-  //   password: "mobassher123",
-  // };
-
   const [login] = useLoginMutation();
 
   const onSubmit = async (data: FieldValues) => {
