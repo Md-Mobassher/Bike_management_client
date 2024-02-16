@@ -27,9 +27,9 @@ const UserDashboard = () => {
 
   return (
     <div className="p-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-      {bikes.data.map((bike: bike) => (
+      {/* {bikes?.data?.map((bike: bike) => (
         <BikeCard key={bike?._id} {...bike} />
-      ))}
+      ))} */}
     </div>
   );
 };

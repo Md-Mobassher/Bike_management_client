@@ -4,6 +4,7 @@ export type TRegister = {
   password: string;
   contactNo: string;
   gender: string;
+  role: string;
   dateOfBirth: string;
   presentAddress: string;
   permanentAddress: string;

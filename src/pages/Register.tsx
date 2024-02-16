@@ -1,3 +1,7 @@
+import BikeDatePicker from "@/components/form/BikeDatePickers";
+import BikeForm from "@/components/form/BikeForm";
+import BikeInput from "@/components/form/BikeInput";
+import BikeSelect from "@/components/form/BikeSelect";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,18 +10,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { genderOptions, roleOptions } from "@/constant/global";
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { TRegister } from "@/types/user.type";
-import { FieldValues, useForm } from "react-hook-form";
+import { Col, Divider, Row } from "antd";
+import { FieldValues } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
-
   const [registerUser] = useRegisterMutation();
 
   const onSubmit = async (data: FieldValues) => {
@@ -36,6 +38,7 @@ const Register = () => {
         password: data.password,
         contactNo: data.contactNo,
         gender: data.gender,
+        role: data.role,
         dateOfBirth: data.dateOfBirth,
         presentAddress: data.presentAddress,
         permanentAddress: data.permanentAddress,
@@ -60,7 +63,7 @@ const Register = () => {
 
   return (
     <div
-      className="flex justify-center items-center p-20"
+      className="flex justify-center items-center p-20 min-h-screen"
       style={{
         backgroundImage:
           "url(https://i.ibb.co/1z94XnJ/lino-9-Pna-Lbcier-E-unsplash-1.jpg)",
@@ -68,108 +71,113 @@ const Register = () => {
         backgroundAttachment: "fixed",
       }}
     >
-      <Card className="w-[360px]">
+      <Card className="">
         <CardHeader>
-          <CardTitle
-            style={{
-              paddingBottom: "10px",
-              fontSize: "28px",
-              lineHeight: "40px",
-              fontWeight: 600,
-            }}
-          >
+          <CardTitle className="text-2xl font-bold text-center">
             Registser into Bike Management Dashboard
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid w-full items-center gap-5">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  {...register("name")}
-                  id="name"
-                  placeholder="Your Name"
-                />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  {...register("email")}
-                  id="email"
-                  placeholder="Your Email"
-                />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  {...register("password")}
-                  id="password"
-                  placeholder="Your Password"
-                />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="contactNo">Contact Number</Label>
-                <Input
-                  type="number"
-                  id="contactNo"
-                  placeholder="Your Contact Number"
-                  {...register("contactNo")}
-                />
-              </div>
+          <Row justify="center">
+            <Col span={24}>
+              <BikeForm onSubmit={onSubmit}>
+                <Divider className="text-xl font-semibold ">
+                  Basic Info.
+                </Divider>
+                <Row gutter={16}>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="text"
+                      name="name"
+                      label="Name"
+                      placeholder="Your Name"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="email"
+                      name="email"
+                      label="Email"
+                      placeholder="Your Email"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="text"
+                      name="password"
+                      label="Password"
+                      placeholder="Your Password"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="number"
+                      name="contactNo"
+                      label="Contact No"
+                      placeholder="Your Contact No"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeSelect
+                      label="Gender"
+                      name="gender"
+                      options={genderOptions}
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeSelect
+                      label="Role"
+                      name="role"
+                      options={roleOptions}
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeDatePicker name="dateOfBirth" label="Date Of Birth" />
+                  </Col>
+                </Row>
 
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="gender">Gender</Label>
-                <select
-                  className="input border rounded-lg p-2"
-                  {...register("gender", { required: true })}
-                >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
+                <Divider>Others Info.</Divider>
 
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="dateOfBirth">Date of Birth</Label>
-                <Input
-                  type="date"
-                  id="dateOfBirth"
-                  placeholder="Your Date of Birth"
-                  {...register("dateOfBirth")}
-                />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="presentAddress">Present Address</Label>
-                <Input
-                  {...register("presentAddress")}
-                  id="presentAddress"
-                  placeholder="Your Present Address"
-                />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="permanentAddress">Permanent Address</Label>
-                <Input
-                  id="permanentAddress"
-                  placeholder="Your Permanent Address"
-                  {...register("permanentAddress")}
-                />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="file">Profile Image</Label>
-                <Input
-                  type="file"
-                  {...register("files")}
-                  id="file"
-                  placeholder="Your Profile Image"
-                />
-              </div>
-              <Button type="submit">Register</Button>
-            </div>
-          </form>
+                <Row gutter={12}>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="text"
+                      name="presentAddress"
+                      label="Present Address"
+                      placeholder="Your Present Address"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="text"
+                      name="permanentAddress"
+                      label="Permanent Address"
+                      placeholder="Your Permanent Address"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="file"
+                      name="files"
+                      label="Profile Image"
+                      placeholder="Select your image"
+                    />
+                  </Col>
+                </Row>
+
+                <Row gutter={24}>
+                  <Col span={24} className="flex justify-center mt-5">
+                    <Button className="bg-green-600" type="submit">
+                      Register
+                    </Button>
+                  </Col>
+                </Row>
+              </BikeForm>
+            </Col>
+          </Row>
         </CardContent>
-        <CardFooter>
-          <p className="text-md">
+        <CardFooter className="flex justify-center">
+          <p className="text-md ">
             Already registered? Please{" "}
             <NavLink className="text-blue-500 font-semibold" to="/login">
               Login

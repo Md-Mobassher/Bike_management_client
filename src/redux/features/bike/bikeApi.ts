@@ -8,6 +8,7 @@ const bikeApi = baseApi.injectEndpoints({
         method: "POST",
         body: newBike,
       }),
+      invalidatesTags: ["bike"],
     }),
     getAllBikes: builder.query({
       query: () => ({
@@ -15,6 +16,7 @@ const bikeApi = baseApi.injectEndpoints({
         method: "GET",
         providesTags: ["Bikes"],
       }),
+      providesTags: ["bike"],
     }),
     getSingleBike: builder.query({
       query: (id) => ({
@@ -28,12 +30,14 @@ const bikeApi = baseApi.injectEndpoints({
         method: "PATCH",
         body: updatedBike,
       }),
+      invalidatesTags: ["bike"],
     }),
     deleteABike: builder.mutation({
       query: (id) => ({
         url: `bikes/${id}`,
         method: "PUT",
       }),
+      invalidatesTags: ["bike"],
     }),
   }),
 });
