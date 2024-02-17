@@ -63,7 +63,7 @@ const Register = () => {
 
   return (
     <div
-      className="flex justify-center items-center p-20 min-h-screen"
+      className="flex justify-center items-center lg:px-20 px-10 py-10 min-h-screen"
       style={{
         backgroundImage:
           "url(https://i.ibb.co/1z94XnJ/lino-9-Pna-Lbcier-E-unsplash-1.jpg)",
@@ -71,7 +71,7 @@ const Register = () => {
         backgroundAttachment: "fixed",
       }}
     >
-      <Card className="">
+      <Card className="max-w-5xl">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">
             Registser into Bike Management Dashboard
@@ -121,6 +121,7 @@ const Register = () => {
                     <BikeSelect
                       label="Gender"
                       name="gender"
+                      placeholder="Gender"
                       options={genderOptions}
                     />
                   </Col>
@@ -128,6 +129,7 @@ const Register = () => {
                     <BikeSelect
                       label="Role"
                       name="role"
+                      placeholder="Your Role"
                       options={roleOptions}
                     />
                   </Col>

@@ -1,31 +1,37 @@
+import BikeDatePicker from "@/components/form/BikeDatePickers";
+import BikeForm from "@/components/form/BikeForm";
+import BikeInput from "@/components/form/BikeInput";
+import BikeSelect from "@/components/form/BikeSelect";
 import { Button } from "@/components/ui/button";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+  bikeGearTypesOptions,
+  bikeMaterialsOptions,
+  bikeSizeOptions,
+  bikeSuspensionTypesOptions,
+  bikeTypesOptions,
+} from "@/constant/global";
 import { useAddBikeMutation } from "@/redux/features/bike/bikeApi";
-import { FieldValues, useForm } from "react-hook-form";
+import { Card, Col, Row } from "antd";
+import { FieldValues } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const AddBikeModal = () => {
-  const { register, handleSubmit } = useForm();
   const [addBike] = useAddBikeMutation();
+  const navigate = useNavigate();
 
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Adding Bike to Database");
 
     try {
       const formData = new FormData();
-      // Append files to FormData
       for (const file of data.file) {
         formData.append("file", file);
       }
+
       const bikeInfo = {
+        bikeId: data.bikeId,
         name: data.name,
         price: Number(data.price),
         quantity: Number(data.quantity),
@@ -35,6 +41,9 @@ const AddBikeModal = () => {
         type: data.type,
         size: data.size,
         color: data.color,
+        gearType: data.gearType,
+        material: data.material,
+        suspensionType: data.suspensionType,
       };
 
       formData.append("data", JSON.stringify(bikeInfo));
@@ -44,6 +53,7 @@ const AddBikeModal = () => {
         id: toastId,
         duration: 3000,
       });
+      navigate(`/seller/dashboard`);
     } catch (err) {
       toast.error("Failed to add bike. Something went wrong", {
         id: toastId,
@@ -53,121 +63,144 @@ const AddBikeModal = () => {
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button className="bg-white text-black hover:bg-green-600 hover:text-white">
-          Add New Bike
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Add Bike Details</DialogTitle>
-        </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name">Name</Label>
-            <Input
-              className="col-span-3"
-              id="name"
-              placeholder="Bike Name"
-              {...register("name")}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="price">Price</Label>
-            <Input
-              type="number"
-              className="col-span-3"
-              id="price"
-              placeholder="Bike Price"
-              {...register("price")}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="quantity">Quantity</Label>
-            <Input
-              type="number"
-              className="col-span-3"
-              id="quantity"
-              placeholder="Bike Quantity"
-              {...register("quantity")}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="releaseDate">Release Date</Label>
-            <Input
-              type="date"
-              className="col-span-3"
-              id="releaseDate"
-              placeholder="Bike Release Date"
-              {...register("releaseDate")}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="brand">Brand Name</Label>
-            <Input
-              className="col-span-3"
-              id="brand"
-              placeholder="Bike Brand Name"
-              {...register("brand")}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="model">Model</Label>
-            <Input
-              className="col-span-3"
-              id="model"
-              placeholder="Bike Model No"
-              {...register("model")}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="type">Type</Label>
-            <Input
-              className="col-span-3"
-              id="type"
-              placeholder="Bike Type"
-              {...register("type")}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="size">Size</Label>
-            <select
-              className="input border rounded-lg p-2 col-span-3"
-              {...register("size", { required: true })}
-            >
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-            </select>
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="color">Color</Label>
-            <Input
-              className="col-span-3"
-              id="color"
-              placeholder="Bike Color"
-              {...register("color")}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="file">Bike Image</Label>
-            <Input
-              type="file"
-              className="col-span-3"
-              id="file"
-              placeholder="Bike Image"
-              {...register("file")}
-            />
-          </div>
-          <div className="flex justify-end">
-            <Button className="" type="submit">
-              Add Bike
-            </Button>
-          </div>
-        </form>
-      </DialogContent>
-    </Dialog>
+    <div className="flex justify-center items-center lg:px-20 px-10 py-10 min-h-screen ">
+      <Card className="max-w-5xl">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold text-center">
+            Add Bike Details
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Row justify="center">
+            <Col span={24}>
+              <BikeForm onSubmit={onSubmit}>
+                <Row gutter={16}>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="text"
+                      name="name"
+                      label="Bike Name"
+                      placeholder="Bike Name"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="text"
+                      name="bikeId"
+                      label="Bike Id"
+                      placeholder="Bike Id (bk-001)"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="number"
+                      name="price"
+                      label="Price"
+                      placeholder="Bike Price"
+                    />
+                  </Col>
+
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="number"
+                      name="quantity"
+                      label="Quantity"
+                      placeholder="Bike Quantity"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeDatePicker name="releaseDate" label="Release Date" />
+                  </Col>
+
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="text"
+                      name="brand"
+                      label="Brand Name"
+                      placeholder="Bike Brand Name"
+                    />
+                  </Col>
+
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="text"
+                      name="model"
+                      label="Model No"
+                      placeholder="Bike Model No"
+                    />
+                  </Col>
+
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeSelect
+                      options={bikeTypesOptions}
+                      name="type"
+                      label="Type"
+                      placeholder="Bike Type"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeSelect
+                      label="Size"
+                      name="size"
+                      placeholder="Bike Size"
+                      options={bikeSizeOptions}
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="text"
+                      name="color"
+                      label="Bike Color"
+                      placeholder="Bike Color"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeSelect
+                      options={bikeGearTypesOptions}
+                      name="gearType"
+                      label="Gear Type"
+                      placeholder="Bike Gear Type"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeSelect
+                      options={bikeMaterialsOptions}
+                      name="material"
+                      label="Material Type"
+                      placeholder="Bike Material Type"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeSelect
+                      options={bikeSuspensionTypesOptions}
+                      name="suspensionType"
+                      label="Suspension Type"
+                      placeholder="Bike Suspension Type"
+                    />
+                  </Col>
+                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="file"
+                      name="file"
+                      label="Bike Image"
+                      placeholder="Bike Image"
+                    />
+                  </Col>
+                </Row>
+
+                <Row gutter={24}>
+                  <Col span={24} className="flex justify-center mt-5">
+                    <Button className="bg-green-600" type="submit">
+                      Add Bike
+                    </Button>
+                  </Col>
+                </Row>
+              </BikeForm>
+            </Col>
+          </Row>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

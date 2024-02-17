@@ -10,7 +10,7 @@ const MainLayout = () => {
       <Sidebar />
       <Layout>
         <Navbar />
-        <Content className="border border-1 bg-slate-50 border-slate-200">
+        <Content className="border border-1 bg-gray-200 border-slate-200">
           <Outlet />
         </Content>
       </Layout>

@@ -22,7 +22,7 @@ const SellerDashboard = () => {
   }
 
   return (
-    <div className="p-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+    <div className="lg:p-10 p-5 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-center items-stretch lg:gap-5 md:gap-4 gap-3">
       {bikes?.data?.map((bike: TBike) => (
         <BikeCard key={bike?._id} {...bike} />
       ))}

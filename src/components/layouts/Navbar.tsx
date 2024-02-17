@@ -3,8 +3,6 @@ import { Button } from "../ui/button";
 import { logout } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { NavLink } from "react-router-dom";
-import AddBike from "@/pages/seller/bikeManagement/AddBike";
-import SalesHistoryItem from "@/pages/seller/salesManagement/SalesHistoryItems";
 
 const { Header } = Layout;
 

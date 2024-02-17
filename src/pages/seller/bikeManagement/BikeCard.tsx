@@ -1,14 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import {
-  useDeleteABikeMutation,
-  useGetAllBikesQuery,
-} from "@/redux/features/bike/bikeApi";
-import { bike } from "@/types/bike.type";
+import { useDeleteABikeMutation } from "@/redux/features/bike/bikeApi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import SellBikeModal from "../salesManagement/SellABike";
 import UpdateBikeModal from "./UpdateBike";
+import { TBike } from "@/types/bike.type";
 
 const BikeCard = ({
   _id,
@@ -19,10 +16,9 @@ const BikeCard = ({
   model,
   price,
   quantity,
-}: bike) => {
+}: TBike) => {
   const navigate = useNavigate();
 
-  const { refetch } = useGetAllBikesQuery(undefined);
   const [deleteABike, { isLoading, isError, isSuccess }] =
     useDeleteABikeMutation();
 
@@ -44,7 +40,6 @@ const BikeCard = ({
       {
         isSuccess &&
           toast.loading("Deleteing Bike", { id: toastId, duration: 3000 });
-        refetch();
       }
     } catch (error) {
       console.error("Error deleting bike:", error);
@@ -59,7 +54,7 @@ const BikeCard = ({
   };
 
   return (
-    <Card className=" ">
+    <Card className="sm:max-w-[400px] ">
       <img
         className="h-60 w-full border-b-2 mb-4 rounded-t-md"
         src={bikeImage}

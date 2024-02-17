@@ -1,4 +1,3 @@
-import { TQueryParam } from "@/types/global.type";
 import { baseApi } from "../../api/baseApi";
 
 const sellApi = baseApi.injectEndpoints({

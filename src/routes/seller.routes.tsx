@@ -1,6 +1,5 @@
 import SellerDashboard from "@/pages/seller/SellerDashboard";
 import FilterBike from "@/pages/seller/bikeManagement/FilterBike";
-import SalesHistoryItem from "@/pages/seller/salesManagement/SalesHistoryItems";
 import AddBike from "@/pages/seller/bikeManagement/AddBike";
 import BulkDeleteBike from "@/pages/seller/bikeManagement/BulkDeleteBike";
 import SalesHistory from "@/pages/seller/salesManagement/SalesHistory";
@@ -17,7 +16,7 @@ export const sellerPaths = [
       {
         name: "Add New Bike",
         path: "add-bike",
-        element: <SellerDashboard />,
+        element: <AddBike />,
       },
       {
         name: "Bulk Delete Bike",

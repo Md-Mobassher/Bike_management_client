@@ -6,6 +6,7 @@ import ProtectedRoute from "@/components/layouts/ProtectedRoute";
 import { routeGenerator } from "@/utils/routerGenerator";
 import { sellerPaths } from "./seller.routes";
 import { buyerPaths } from "./buyer.routes";
+import SellerDashboard from "@/pages/seller/SellerDashboard";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
     ),
     children: routeGenerator(sellerPaths),
   },
+
   {
     path: "/buyer",
     element: (
