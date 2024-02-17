@@ -1,3 +1,4 @@
+import { TQueryParam } from "@/types/global.type";
 import { baseApi } from "../../api/baseApi";
 
 const sellApi = baseApi.injectEndpoints({
@@ -9,11 +10,22 @@ const sellApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+
     getSellHistory: builder.query({
-      query: ({ interval }) => ({
-        url: `/sales-history?${interval}`,
-        method: "GET",
-      }),
+      query: (args) => {
+        console.log(args);
+        const params = new URLSearchParams();
+
+        if (args) {
+          params.append("interval", args);
+        }
+
+        return {
+          url: "/sales/history",
+          method: "GET",
+          params: params,
+        };
+      },
     }),
   }),
 });

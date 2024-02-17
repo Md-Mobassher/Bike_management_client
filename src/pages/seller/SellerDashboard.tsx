@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetAllBikesQuery } from "@/redux/features/bike/bikeApi";
-import BikeCard from "./BikeCard";
 import Loading from "@/components/ui/Loading";
 import { TBike } from "@/types/bike.type";
+import BikeCard from "./bikeManagement/BikeCard";
 
-const UserDashboard = () => {
+const SellerDashboard = () => {
   const {
     data: bikes,
     isLoading,
@@ -31,4 +30,4 @@ const UserDashboard = () => {
   );
 };
 
-export default UserDashboard;
+export default SellerDashboard;

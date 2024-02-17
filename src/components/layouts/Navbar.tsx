@@ -3,8 +3,8 @@ import { Button } from "../ui/button";
 import { logout } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { NavLink } from "react-router-dom";
-import AddBike from "@/pages/seller/bike/AddBike";
-import SalesHistoryItem from "@/pages/seller/sales/SalesHistoryItems";
+import AddBike from "@/pages/seller/bikeManagement/AddBike";
+import SalesHistoryItem from "@/pages/seller/salesManagement/SalesHistoryItems";
 
 const { Header } = Layout;
 
@@ -26,8 +26,7 @@ const Navbar = () => {
               Home
             </NavLink>
           </Button>
-          <AddBike />
-          <SalesHistoryItem />
+
           <Button
             onClick={() => dispatch(logout())}
             className="bg-white text-black hover:bg-green-600 hover:text-white border ml-5"

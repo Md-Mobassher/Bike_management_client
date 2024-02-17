@@ -56,7 +56,7 @@ const AddBikeModal = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button className="bg-white text-black hover:bg-green-600 hover:text-white">
-          Add Bike
+          Add New Bike
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
