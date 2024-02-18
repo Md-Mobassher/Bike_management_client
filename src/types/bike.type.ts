@@ -10,7 +10,7 @@ export type TBike = {
   name: string;
   price: number;
   quantity: number;
-  releaseDate: string;
+  releaseDate: string | Date;
   size: string;
   suspensionType: string;
   type: string;

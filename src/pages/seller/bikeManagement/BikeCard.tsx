@@ -4,7 +4,6 @@ import { useDeleteABikeMutation } from "@/redux/features/bike/bikeApi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import SellBikeModal from "../salesManagement/SellABike";
-import UpdateBikeModal from "./UpdateBike";
 import { TBike } from "@/types/bike.type";
 
 const BikeCard = ({
@@ -23,8 +22,12 @@ const BikeCard = ({
     useDeleteABikeMutation();
 
   // bike details
-  const handleBikeDetails = (id: string) => {
-    navigate(`/bike/${id}`);
+  const handleDuplicate = (id: string) => {
+    navigate(`/seller/duplicate-bike/${id}`);
+  };
+
+  const handleEditBike = (id: string) => {
+    navigate(`/seller/update-bike/${id}`);
   };
 
   // delete a bike
@@ -69,10 +72,12 @@ const BikeCard = ({
         <p>Model: {model}</p>
       </CardContent>
       <CardFooter className="flex justify-between gap-2 flex-wrap">
-        <Button className="bg-green-600" onClick={() => handleBikeDetails(_id)}>
-          Details
+        <Button className="bg-green-600" onClick={() => handleDuplicate(_id)}>
+          Duplicate
         </Button>
-        <UpdateBikeModal id={_id} />
+        <Button className="bg-red-700" onClick={() => handleEditBike(_id)}>
+          Edit
+        </Button>
         <SellBikeModal id={_id} />
         <Button className="bg-red-700" onClick={() => handleDeleteBike(_id)}>
           Delete

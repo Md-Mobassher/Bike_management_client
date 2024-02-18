@@ -1,6 +1,5 @@
-import { TMeta, TQueryParam, TResponseRedux } from "@/types/global.type";
+import { TQueryParam } from "@/types/global.type";
 import { baseApi } from "../../api/baseApi";
-import { TBike } from "@/types/bike.type";
 
 const bikeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -21,14 +20,6 @@ const bikeApi = baseApi.injectEndpoints({
         };
       },
       providesTags: ["bike"],
-      transformResponse: (
-        response: TResponseRedux<{ meta: TMeta; result: TBike[] }>
-      ) => {
-        return {
-          data: response?.data?.result,
-          meta: response?.data?.meta,
-        };
-      },
     }),
 
     addBike: builder.mutation({
