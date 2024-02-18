@@ -8,6 +8,7 @@ import { TBike } from "@/types/bike.type";
 
 const BikeCard = ({
   _id,
+  bikeId,
   name,
   bikeImage,
   brand,
@@ -18,8 +19,7 @@ const BikeCard = ({
 }: TBike) => {
   const navigate = useNavigate();
 
-  const [deleteABike, { isLoading, isError, isSuccess }] =
-    useDeleteABikeMutation();
+  const [deleteABike, { isLoading, isError }] = useDeleteABikeMutation();
 
   // bike details
   const handleDuplicate = (id: string) => {
@@ -40,15 +40,14 @@ const BikeCard = ({
 
     try {
       await deleteABike(id);
-      {
-        isSuccess &&
-          toast.loading("Deleteing Bike", { id: toastId, duration: 3000 });
-      }
-    } catch (error) {
-      console.error("Error deleting bike:", error);
+      toast.success("Bike Delete Successfull.", {
+        id: toastId,
+        duration: 3000,
+      });
+    } catch (err) {
       {
         isError &&
-          toast.error("Bike delete failed. Something went wrong", {
+          toast.error(err?.data?.message || "Bike delete failed.", {
             id: toastId,
             duration: 3000,
           });
@@ -65,6 +64,7 @@ const BikeCard = ({
       />
       <CardContent>
         <p className="text-xl font-semibold">Name: {name}</p>
+        <p className="text-xl font-semibold">Bike ID: {bikeId}</p>
         <p className="text-xl font-semibold">Price: $ {price}</p>
         <p className="text-md font-semibold">Quantity: {quantity}</p>
         <p>Brand: {brand}</p>

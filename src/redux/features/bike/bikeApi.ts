@@ -31,6 +31,15 @@ const bikeApi = baseApi.injectEndpoints({
       invalidatesTags: ["bike"],
     }),
 
+    duplicateBike: builder.mutation({
+      query: (arg) => ({
+        url: `/bikes/duplicate/${arg.id}`,
+        method: "POST",
+        body: arg.duplicateBikeData,
+      }),
+      invalidatesTags: ["bike"],
+    }),
+
     getSingleBike: builder.query({
       query: (id) => ({
         url: `/bikes/${id}`,
@@ -50,7 +59,7 @@ const bikeApi = baseApi.injectEndpoints({
     deleteABike: builder.mutation({
       query: (id) => ({
         url: `bikes/${id}`,
-        method: "PUT",
+        method: "DELETE",
       }),
       invalidatesTags: ["bike"],
     }),
@@ -59,6 +68,7 @@ const bikeApi = baseApi.injectEndpoints({
 
 export const {
   useAddBikeMutation,
+  useDuplicateBikeMutation,
   useGetAllBikesQuery,
   useGetSingleBikeQuery,
   useUpdateABikeMutation,

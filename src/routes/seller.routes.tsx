@@ -4,6 +4,7 @@ import AddBike from "@/pages/seller/bikeManagement/AddBike";
 import BulkDeleteBike from "@/pages/seller/bikeManagement/BulkDeleteBike";
 import SalesHistory from "@/pages/seller/salesManagement/SalesHistory";
 import UpdateBike from "@/pages/seller/bikeManagement/UpdateBike";
+import DuplicateBike from "@/pages/seller/bikeManagement/DuplicateBike";
 
 export const sellerPaths = [
   {
@@ -27,6 +28,10 @@ export const sellerPaths = [
       {
         path: "update-bike/:id",
         element: <UpdateBike />,
+      },
+      {
+        path: "duplicate-bike/:id",
+        element: <DuplicateBike />,
       },
     ],
   },

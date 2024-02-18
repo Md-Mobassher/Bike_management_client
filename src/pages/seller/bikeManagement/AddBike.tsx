@@ -22,7 +22,7 @@ const AddBikeModal = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data: FieldValues) => {
-    const toastId = toast.loading("Adding Bike to Database");
+    const toastId = toast.loading("Adding Bike...");
 
     try {
       const formData = new FormData();

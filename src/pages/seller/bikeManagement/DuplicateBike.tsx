@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import BikeDatePicker from "@/components/form/BikeDatePickers";
 import BikeForm from "@/components/form/BikeForm";
 import BikeInput from "@/components/form/BikeInput";
@@ -14,8 +13,8 @@ import {
   bikeTypesOptions,
 } from "@/constant/global";
 import {
+  useDuplicateBikeMutation,
   useGetSingleBikeQuery,
-  useUpdateABikeMutation,
 } from "@/redux/features/bike/bikeApi";
 import { TBike } from "@/types/bike.type";
 import { Card, Col, Row } from "antd";
@@ -23,10 +22,10 @@ import { FieldValues } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 
-const UpdateBike = () => {
+const DuplicateBike = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [updateBike] = useUpdateABikeMutation();
+  const [duplicateBike] = useDuplicateBikeMutation();
   const { data: bikeData, isLoading, isError } = useGetSingleBikeQuery(id);
   if (isLoading) {
     return <Loading />;
@@ -52,13 +51,14 @@ const UpdateBike = () => {
       gearType: bikeData?.data?.gearType,
       material: bikeData?.data?.material,
       suspensionType: bikeData?.data?.suspensionType,
+      bikeImage: bikeData?.data?.bikeImage,
     } || {};
 
   const onSubmit = async (data: FieldValues) => {
-    const toastId = toast.loading("Updating Bike");
+    const toastId = toast.loading("Duplicating Bike...");
 
     try {
-      const updatedBike = {
+      const bikeInfo = {
         bikeId: data.bikeId,
         name: data.name,
         price: Number(data.price),
@@ -72,23 +72,25 @@ const UpdateBike = () => {
         gearType: data.gearType,
         material: data.material,
         suspensionType: data.suspensionType,
+        bikeImage: data.bikeImage,
       };
 
-      const res = await updateBike({ id, updatedBike }).unwrap();
-
-      toast.success(res?.message || "Bike Update Successfully.", {
+      const newBike = {
+        id,
+        duplicateBikeData: bikeInfo,
+      };
+      const res = await duplicateBike(newBike).unwrap();
+      console.log(res);
+      toast.success("Bike Duplicated Successfully.", {
         id: toastId,
         duration: 3000,
       });
       navigate(`/seller/dashboard`);
     } catch (err) {
-      toast.error(
-        err?.data?.message || "Failed to update bike. Something went wrong",
-        {
-          id: toastId,
-          duration: 3000,
-        }
-      );
+      toast.error(err?.data.message || "Failed to Duplicate bike.", {
+        id: toastId,
+        duration: 3000,
+      });
     }
   };
 
@@ -97,7 +99,7 @@ const UpdateBike = () => {
       <Card className="max-w-5xl">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">
-            Edit Bike Details
+            Duplicate Bike
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -129,6 +131,7 @@ const UpdateBike = () => {
                       placeholder="Bike Price"
                     />
                   </Col>
+
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                     <BikeInput
                       type="number"
@@ -138,8 +141,9 @@ const UpdateBike = () => {
                     />
                   </Col>
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-                    <BikeDatePicker name="releaseDate" label="Release Date" /> 
+                    <BikeDatePicker name="releaseDate" label="Release Date" />
                   </Col>
+
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                     <BikeInput
                       type="text"
@@ -148,6 +152,7 @@ const UpdateBike = () => {
                       placeholder="Bike Brand Name"
                     />
                   </Col>
+
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                     <BikeInput
                       type="text"
@@ -156,6 +161,7 @@ const UpdateBike = () => {
                       placeholder="Bike Model No"
                     />
                   </Col>
+
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                     <BikeSelect
                       options={bikeTypesOptions}
@@ -172,7 +178,6 @@ const UpdateBike = () => {
                       options={bikeSizeOptions}
                     />
                   </Col>
-
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                     <BikeInput
                       type="text"
@@ -181,7 +186,6 @@ const UpdateBike = () => {
                       placeholder="Bike Color"
                     />
                   </Col>
-
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                     <BikeSelect
                       options={bikeGearTypesOptions}
@@ -190,7 +194,6 @@ const UpdateBike = () => {
                       placeholder="Bike Gear Type"
                     />
                   </Col>
-
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                     <BikeSelect
                       options={bikeMaterialsOptions}
@@ -199,7 +202,6 @@ const UpdateBike = () => {
                       placeholder="Bike Material Type"
                     />
                   </Col>
-
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                     <BikeSelect
                       options={bikeSuspensionTypesOptions}
@@ -208,12 +210,20 @@ const UpdateBike = () => {
                       placeholder="Bike Suspension Type"
                     />
                   </Col>
+                  {/* <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                    <BikeInput
+                      type="file"
+                      name="file"
+                      label="Bike Image"
+                      placeholder="Bike Image"
+                    />
+                  </Col> */}
                 </Row>
 
                 <Row gutter={24}>
                   <Col span={24} className="flex justify-center mt-5">
                     <Button className="bg-green-600" type="submit">
-                      Update Bike
+                      Duplicate Bike
                     </Button>
                   </Col>
                 </Row>
@@ -226,4 +236,4 @@ const UpdateBike = () => {
   );
 };
 
-export default UpdateBike;
+export default DuplicateBike;
