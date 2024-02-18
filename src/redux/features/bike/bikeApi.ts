@@ -63,6 +63,15 @@ const bikeApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["bike"],
     }),
+
+    bulkDeleteBikes: builder.mutation({
+      query: (bikeIds) => ({
+        url: `bikes/bulk-delete`,
+        method: "DELETE",
+        body: bikeIds,
+      }),
+      invalidatesTags: ["bike"],
+    }),
   }),
 });
 
@@ -73,4 +82,5 @@ export const {
   useGetSingleBikeQuery,
   useUpdateABikeMutation,
   useDeleteABikeMutation,
+  useBulkDeleteBikesMutation,
 } = bikeApi;

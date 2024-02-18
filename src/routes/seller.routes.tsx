@@ -39,19 +39,19 @@ export const sellerPaths = [
     name: "Sales Management",
     children: [
       {
-        name: "Sell A Bike",
-        path: "sell-bike",
-        element: <AddBike />,
-      },
-      {
         name: "Sales History",
         path: "sales-history",
+        element: <SalesHistory />,
+      },
+      {
+        name: "Get Invoice",
+        path: "get-invoice",
         element: <SalesHistory />,
       },
     ],
   },
   {
-    name: "Bike Filtering",
+    name: "Bike Maintenance",
     children: [
       {
         name: "Filter Bikes",

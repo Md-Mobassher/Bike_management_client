@@ -12,8 +12,8 @@ import {
   bikeTypesOptions,
 } from "@/constant/global";
 import { useAddBikeMutation } from "@/redux/features/bike/bikeApi";
-import { Card, Col, Row } from "antd";
-import { FieldValues } from "react-hook-form";
+import { Card, Col, Form, Input, Row } from "antd";
+import { Controller, FieldValues } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -25,11 +25,6 @@ const AddBikeModal = () => {
     const toastId = toast.loading("Adding Bike...");
 
     try {
-      const formData = new FormData();
-      for (const file of data.file) {
-        formData.append("file", file);
-      }
-
       const bikeInfo = {
         bikeId: data.bikeId,
         name: data.name,
@@ -45,8 +40,13 @@ const AddBikeModal = () => {
         material: data.material,
         suspensionType: data.suspensionType,
       };
+      const formData = new FormData();
 
       formData.append("data", JSON.stringify(bikeInfo));
+      formData.append("file", data.bikeImage);
+
+      console.log(Object.fromEntries(formData));
+
       await addBike(formData).unwrap();
 
       toast.success("Bike Added Successfully.", {
@@ -179,11 +179,19 @@ const AddBikeModal = () => {
                     />
                   </Col>
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-                    <BikeInput
-                      type="file"
-                      name="file"
-                      label="Bike Image"
-                      placeholder="Bike Image"
+                    <Controller
+                      name="bikeImage"
+                      render={({ field: { onChange, value, ...field } }) => (
+                        <Form.Item label="Bike Image">
+                          <Input
+                            placeholder="Bike Image"
+                            type="file"
+                            value={value?.fileName}
+                            {...field}
+                            onChange={(e) => onChange(e.target.files?.[0])}
+                          />
+                        </Form.Item>
+                      )}
                     />
                   </Col>
                 </Row>
