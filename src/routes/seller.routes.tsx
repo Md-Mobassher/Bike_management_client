@@ -5,6 +5,7 @@ import BulkDeleteBike from "@/pages/seller/bikeManagement/BulkDeleteBike";
 import SalesHistory from "@/pages/seller/salesManagement/SalesHistory";
 import UpdateBike from "@/pages/seller/bikeManagement/UpdateBike";
 import DuplicateBike from "@/pages/seller/bikeManagement/DuplicateBike";
+import GetInvoice from "@/pages/seller/salesManagement/GetInvoice";
 
 export const sellerPaths = [
   {
@@ -45,8 +46,8 @@ export const sellerPaths = [
       },
       {
         name: "Get Invoice",
-        path: "get-invoice",
-        element: <SalesHistory />,
+        path: "get-invoice/:id",
+        element: <GetInvoice />,
       },
     ],
   },

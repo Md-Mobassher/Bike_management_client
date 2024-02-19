@@ -16,6 +16,9 @@ const BikeCard = ({
   model,
   price,
   quantity,
+  gearType,
+  material,
+  suspensionType,
 }: TBike) => {
   const navigate = useNavigate();
 
@@ -63,13 +66,59 @@ const BikeCard = ({
         alt={name}
       />
       <CardContent>
-        <p className="text-xl font-semibold">Name: {name}</p>
-        <p className="text-xl font-semibold">Bike ID: {bikeId}</p>
-        <p className="text-xl font-semibold">Price: $ {price}</p>
-        <p className="text-md font-semibold">Quantity: {quantity}</p>
-        <p>Brand: {brand}</p>
-        <p>Color: {color}</p>
-        <p>Model: {model}</p>
+        <div>
+          <div className="flex flex-wrap justify-between">
+            <p className="text-xl font-bold">
+              <span className="text-green-500">{name}</span>
+            </p>
+            <p className="text-lg font-semibold">
+              ID:{" "}
+              <span className="text-xl font-bold text-green-400">{bikeId}</span>
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-between py-2">
+            <p className="text-lg font-semibold">
+              Price:{" "}
+              <span className="text-xl font-bold text-green-400">
+                $ {price}
+              </span>
+            </p>
+            <p className="text-lg font-semibold">
+              Quantity:{" "}
+              <span className="text-xl font-bold text-green-400">
+                {quantity}
+              </span>
+            </p>
+          </div>
+
+          <div className="flex justify-between">
+            <div className="flex flex-col justify-start">
+              <p>
+                <span className="font-semibold">Brand: </span>
+                {brand}
+              </p>
+              <p>
+                <span className="font-semibold">Model: </span> {model}
+              </p>
+              <p>
+                <span className="font-semibold">Color: </span> {color}
+              </p>
+            </div>
+            <div className="flex flex-col items-end">
+              <p>
+                <span className="font-semibold">Material: </span> {material}
+              </p>
+              <p>
+                <span className="font-semibold">Gear: </span>
+                {gearType}
+              </p>
+              <p>
+                <span className="font-semibold">Suspension:</span>
+                {suspensionType}
+              </p>
+            </div>
+          </div>
+        </div>
       </CardContent>
       <CardFooter className="flex justify-between gap-2 flex-wrap">
         <Button className="bg-green-600" onClick={() => handleDuplicate(_id)}>

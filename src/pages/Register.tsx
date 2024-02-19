@@ -23,7 +23,7 @@ const Register = () => {
   const [registerUser] = useRegisterMutation();
 
   const onSubmit = async (data: FieldValues) => {
-    const toastId = toast.loading("Creating User");
+    const toastId = toast.loading("Creating User...");
 
     try {
       const formData = new FormData();

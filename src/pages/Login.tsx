@@ -9,8 +9,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
-import { setUser } from "@/redux/features/auth/authSlice";
+import { TUser, setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
+import { TError } from "@/types/global.type";
 import { verifyToken } from "@/utils/verifyToken";
 import { FieldValues } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -19,24 +20,29 @@ import { toast } from "sonner";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
   const [login] = useLoginMutation();
 
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Logging in");
-
     try {
       const userInfo = {
         email: data.email,
         password: data.password,
       };
       const res = await login(userInfo).unwrap();
-      const user = verifyToken(res.data.accessToken);
+
+      console.log(res);
+      const user = verifyToken(res.data.accessToken) as TUser;
+
       dispatch(setUser({ user: user, token: res.data.accessToken }));
-      toast.success("Logged in", { id: toastId, duration: 3000 });
-      navigate(`/${user?.role}/dashboard`);
-    } catch (err) {
-      toast.error("Something went wrong", { id: toastId, duration: 3000 });
+
+      toast.success("Logged in", { id: toastId, duration: 2000 });
+      navigate(`/${user.role}/dashboard`);
+    } catch (err: TError) {
+      toast.error(err.data.message || "Something went wrong", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
 

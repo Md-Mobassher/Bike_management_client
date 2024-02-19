@@ -36,21 +36,26 @@ const SellBikeModal: React.FC<{ id: string }> = ({ id }) => {
       });
     } catch (err) {
       console.log(err);
-      toast.error(" Failed to sell bike .An error occurred", {
-        id: toastId,
-        duration: 3000,
-      });
+      toast.error(
+        err?.data?.message || " Failed to sell bike .An error occurred",
+        {
+          id: toastId,
+          duration: 3000,
+        }
+      );
     }
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-violet-600 text-white ">Sell</Button>
+        <Button className="bg-green-600">Sell</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add Sell Information</DialogTitle>
+          <DialogTitle className="lg:text-2xl md:text-2xl text-xl font-bold text-center">
+            Add Sales Information
+          </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
@@ -84,7 +89,7 @@ const SellBikeModal: React.FC<{ id: string }> = ({ id }) => {
           </div>
 
           <div className="flex justify-end">
-            <Button className="" type="submit">
+            <Button className="bg-green-600" type="submit">
               Sell This Bike
             </Button>
           </div>
