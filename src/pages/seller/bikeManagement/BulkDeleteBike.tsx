@@ -64,10 +64,13 @@ const BulkDeleteBike = () => {
   return (
     <div className="lg:px-10 md:px-6 px-3 py-5">
       <div className="flex justify-between items-center mb-5">
-        <h2 className="lg:text-2xl md:text-2xl text-xl font-bold">
+        <h2 className="lg:text-2xl md:text-2xl text-xl font-bold text-green-500">
           Select Multiple Bikes
         </h2>
-        <Button className="bg-green-600" onClick={handleDeleteClick}>
+        <Button
+          className="bg-green-500 hover:bg-green-400"
+          onClick={handleDeleteClick}
+        >
           Delete Selected Bikes
         </Button>
       </div>
@@ -80,7 +83,7 @@ const BulkDeleteBike = () => {
               cover={
                 <div className="relative">
                   <input
-                    className="absolute top-5 left-5 size-5 rounded-lg border-green-400"
+                    className="absolute top-5 left-5 size-5 rounded-lg border-green-400 "
                     onChange={() => toggleState(bike._id)}
                     type="checkbox"
                     name="bikeId"

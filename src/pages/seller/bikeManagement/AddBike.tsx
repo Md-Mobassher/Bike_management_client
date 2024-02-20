@@ -66,7 +66,7 @@ const AddBikeModal = () => {
     <div className="flex justify-center items-center lg:px-20 px-10 py-10 min-h-screen ">
       <Card className="max-w-5xl">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
+          <CardTitle className="text-2xl font-bold text-center text-green-500">
             Add Bike Details
           </CardTitle>
         </CardHeader>
@@ -198,7 +198,10 @@ const AddBikeModal = () => {
 
                 <Row gutter={24}>
                   <Col span={24} className="flex justify-center mt-5">
-                    <Button className="bg-green-600" type="submit">
+                    <Button
+                      className="bg-green-500 hover:bg-green-400 px-6"
+                      type="submit"
+                    >
                       Add Bike
                     </Button>
                   </Col>

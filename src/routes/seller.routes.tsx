@@ -6,6 +6,7 @@ import SalesHistory from "@/pages/seller/salesManagement/SalesHistory";
 import UpdateBike from "@/pages/seller/bikeManagement/UpdateBike";
 import DuplicateBike from "@/pages/seller/bikeManagement/DuplicateBike";
 import GetInvoice from "@/pages/seller/salesManagement/GetInvoice";
+import AcceptMaintenance from "@/pages/seller/maintenanceManagement/AcceptMaintenance";
 
 export const sellerPaths = [
   {
@@ -54,9 +55,9 @@ export const sellerPaths = [
     name: "Bike Maintenance",
     children: [
       {
-        name: "Filter Bikes",
-        path: "filter-bikes",
-        element: <FilterBike />,
+        name: "Maintenance Request",
+        path: "maintenance",
+        element: <AcceptMaintenance />,
       },
     ],
   },
