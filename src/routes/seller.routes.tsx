@@ -45,7 +45,6 @@ export const sellerPaths = [
         element: <SalesHistory />,
       },
       {
-        name: "Get Invoice",
         path: "get-invoice/:id",
         element: <GetInvoice />,
       },
