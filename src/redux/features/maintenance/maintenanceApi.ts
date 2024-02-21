@@ -34,7 +34,7 @@ const maintenanceApi = baseApi.injectEndpoints({
     updateMaintenance: builder.mutation({
       query: (salesInfo) => ({
         url: "/maintenance",
-        method: "POST",
+        method: "PUT",
         body: salesInfo,
       }),
       invalidatesTags: ["maintenance"],

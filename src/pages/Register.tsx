@@ -73,7 +73,7 @@ const Register = () => {
     >
       <Card className="max-w-5xl">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
+          <CardTitle className="text-2xl font-bold text-center text-green-500">
             Registser into Bike Management Dashboard
           </CardTitle>
         </CardHeader>
@@ -81,8 +81,8 @@ const Register = () => {
           <Row justify="center">
             <Col span={24}>
               <BikeForm onSubmit={onSubmit}>
-                <Divider className="text-xl font-semibold ">
-                  Basic Info.
+                <Divider>
+                  <p className="text-green-400">Basic Info.</p>
                 </Divider>
                 <Row gutter={16}>
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
@@ -138,7 +138,9 @@ const Register = () => {
                   </Col>
                 </Row>
 
-                <Divider>Others Info.</Divider>
+                <Divider>
+                  <p className="text-green-400">Others Info.</p>
+                </Divider>
 
                 <Row gutter={12}>
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
@@ -169,7 +171,10 @@ const Register = () => {
 
                 <Row gutter={24}>
                   <Col span={24} className="flex justify-center mt-5">
-                    <Button className="bg-green-600" type="submit">
+                    <Button
+                      className="bg-green-500 hover:bg-green-400"
+                      type="submit"
+                    >
                       Register
                     </Button>
                   </Col>
@@ -181,7 +186,7 @@ const Register = () => {
         <CardFooter className="flex justify-center">
           <p className="text-md ">
             Already registered? Please{" "}
-            <NavLink className="text-blue-500 font-semibold" to="/login">
+            <NavLink className="text-green-500 font-semibold" to="/login">
               Login
             </NavLink>
           </p>

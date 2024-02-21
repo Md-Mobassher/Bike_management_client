@@ -1,3 +1,5 @@
+import { Value } from "@radix-ui/react-select";
+
 export const genders = ["Male", "Female", "Other"];
 
 export const genderOptions = genders.map((item) => ({
@@ -87,3 +89,12 @@ export const bikeSuspensionTypesOptions = bikeSuspensionTypes.map((item) => ({
   value: item,
   label: item,
 }));
+
+export const maintenancePendingTypes = ["Pending", "Accepted"];
+
+export const maintenancePendingOptions = maintenancePendingTypes.map(
+  (item) => ({
+    value: item,
+    label: item,
+  })
+);

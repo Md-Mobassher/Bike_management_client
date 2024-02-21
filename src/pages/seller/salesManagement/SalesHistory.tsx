@@ -39,32 +39,39 @@ const SalesHistory = () => {
   };
 
   return (
-    <div>
-      <div className="lg:px-14 md:px-5 px-2 my-5 flex flex-wrap lg:gap-5 gap-1">
-        <Button
-          onClick={() => setSalesInterval("daily")}
-          className="bg-green-500 hover:bg-green-400 text-white "
-        >
-          Daily Sales
-        </Button>
-        <Button
-          onClick={() => setSalesInterval("weekly")}
-          className="bg-green-500 hover:bg-green-400 text-white "
-        >
-          Weekly Sales
-        </Button>
-        <Button
-          onClick={() => setSalesInterval("monthly")}
-          className="bg-green-500 hover:bg-green-400 text-white "
-        >
-          Monthly Sales
-        </Button>
-        <Button
-          onClick={() => setSalesInterval("yearly")}
-          className="bg-green-500 hover:bg-green-400 text-white "
-        >
-          Yearly Sales
-        </Button>
+    <div className="lg:p-10 md:p-8 p-5">
+      <div className=" px-2 lg:my-5 flex flex-wrap lg:justify-between md:justify-between justify-center gap-5 items-center">
+        <div>
+          <h1 className="text-2xl font-bold text-center text-green-500 lg:mb-6 mb-4">
+            Sales history
+          </h1>
+        </div>
+        <div className=" flex flex-wrap justify-center lg:gap-5 gap-2 mb-5">
+          <Button
+            onClick={() => setSalesInterval("daily")}
+            className="bg-green-500 hover:bg-green-400 text-white "
+          >
+            Daily Sales
+          </Button>
+          <Button
+            onClick={() => setSalesInterval("weekly")}
+            className="bg-green-500 hover:bg-green-400 text-white "
+          >
+            Weekly Sales
+          </Button>
+          <Button
+            onClick={() => setSalesInterval("monthly")}
+            className="bg-green-500 hover:bg-green-400 text-white "
+          >
+            Monthly Sales
+          </Button>
+          <Button
+            onClick={() => setSalesInterval("yearly")}
+            className="bg-green-500 hover:bg-green-400 text-white "
+          >
+            Yearly Sales
+          </Button>
+        </div>
       </div>
       <Table className="lg:px-10 md:px-5 px-2 pb-10 mx-auto ">
         <TableCaption>
@@ -79,8 +86,8 @@ const SalesHistory = () => {
             </div>
           )}
         </TableCaption>
-        <TableHeader>
-          <TableRow className="bg-slate-400 hover:bg-green-400">
+        <TableHeader className="bg-green-400">
+          <TableRow className="bg-green-400 hover:bg-green-300">
             <TableHead className="text-white">Buyer Name</TableHead>
             <TableHead className=" text-center text-white">Bike Id</TableHead>
             <TableHead className="text-start text-white">
@@ -90,12 +97,15 @@ const SalesHistory = () => {
             <TableHead className="text-right  text-white">
               Total Amount
             </TableHead>
-            <TableHead className="text-right text-white">Invoice</TableHead>
+            <TableHead className="text-right text-white">Get Invoice</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {SalesHistory?.data?.map((sell: any) => (
-            <TableRow key={sell._id} className="bg-purple-100  hover:bg-white">
+            <TableRow
+              key={sell._id}
+              className="bg-purple-100  hover:bg-white border-b border-green-200"
+            >
               <TableCell className="font-medium">{sell.buyerName}</TableCell>
               <TableCell>{sell.bikeId}</TableCell>
               <TableCell>{sell.quantity}</TableCell>
@@ -112,7 +122,6 @@ const SalesHistory = () => {
             </TableRow>
           ))}
         </TableBody>
-        <TableFooter></TableFooter>
       </Table>
     </div>
   );

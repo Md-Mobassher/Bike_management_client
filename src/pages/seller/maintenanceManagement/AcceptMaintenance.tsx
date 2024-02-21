@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import Loading from "@/components/ui/Loading";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -10,10 +11,22 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useGetAllMaintenanceQuery } from "@/redux/features/maintenance/maintenanceApi";
+import UpdateMaintenance from "./UpdateMaintenance";
 
 const AcceptMaintenance = () => {
-  const { data: maintenanceData } = useGetAllMaintenanceQuery(undefined);
-  console.log(maintenanceData);
+  const {
+    data: maintenanceData,
+    isLoading,
+    isError,
+  } = useGetAllMaintenanceQuery(undefined);
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <div>Error loading Maintenance. Please try again later.</div>;
+  }
+
   return (
     <div className="lg:p-10 md:p-8 p-5">
       <h1 className="text-2xl font-bold text-center text-green-500 mb-7">
@@ -47,6 +60,8 @@ const AcceptMaintenance = () => {
             </TableHead>
             <TableHead className="  text-white">Notes</TableHead>
             <TableHead className=" text-white">Status</TableHead>
+            <TableHead className=" text-white">Discount %</TableHead>
+            <TableHead className=" text-white">Total</TableHead>
             <TableHead className="text-right text-white">Action</TableHead>
           </TableRow>
         </TableHeader>
@@ -86,9 +101,13 @@ const AcceptMaintenance = () => {
                 )}
               </TableCell>
               <TableCell className="text-right">
-                <Button className="bg-green-500 hover:bg-green-400 text-white">
-                  Update
-                </Button>
+                {maintenance?.discount?.percentage}
+              </TableCell>
+              <TableCell className="text-right">
+                {maintenance?.discount?.fixedAmount}
+              </TableCell>
+              <TableCell className="text-right">
+                <UpdateMaintenance id={maintenance._id} />
               </TableCell>
             </TableRow>
           ))}
