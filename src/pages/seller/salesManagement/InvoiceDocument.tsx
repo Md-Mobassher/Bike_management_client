@@ -104,17 +104,17 @@ const InvoiceDocument = ({
             <TableCell colSpan={2} className="font-medium">
               {bikeUId}
             </TableCell>
-            <TableCell>{price}</TableCell>
+            <TableCell>$ {price}</TableCell>
             <TableCell className="text-center">{quantity}</TableCell>
-            <TableCell className="text-right">{totalAmount}</TableCell>
+            <TableCell className="text-right">$ {totalAmount}</TableCell>
           </TableRow>
         </TableBody>
         <TableFooter>
           <TableRow className="bg-slate-100">
             <TableCell colSpan={4} className="text-right">
-              Total
+              Total Amount
             </TableCell>
-            <TableCell className="text-right">{totalAmount}</TableCell>
+            <TableCell className="text-right">$ {totalAmount}</TableCell>
           </TableRow>
         </TableFooter>
       </Table>

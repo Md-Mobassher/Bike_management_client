@@ -11,7 +11,6 @@ import {
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { TUser, setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
-import { TError } from "@/types/global.type";
 import { verifyToken } from "@/utils/verifyToken";
 import { FieldValues } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -23,7 +22,7 @@ const Login = () => {
   const [login] = useLoginMutation();
 
   const onSubmit = async (data: FieldValues) => {
-    const toastId = toast.loading("Logging in");
+    const toastId = toast.loading("Logging in...");
     try {
       const userInfo = {
         email: data.email,
@@ -38,7 +37,7 @@ const Login = () => {
 
       toast.success("Logged in", { id: toastId, duration: 2000 });
       navigate(`/${user.role}/dashboard`);
-    } catch (err: TError) {
+    } catch (err) {
       toast.error(err.data.message || "Something went wrong", {
         id: toastId,
         duration: 2000,
@@ -57,7 +56,7 @@ const Login = () => {
     >
       <Card className="w-[360px]">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
+          <CardTitle className="text-2xl font-bold text-center text-green-500">
             Login Into Bike Management Dashboard
           </CardTitle>
         </CardHeader>
@@ -76,7 +75,7 @@ const Login = () => {
               placeholder="Your Password"
             />
             <div className="flex justify-center mt-5">
-              <Button className="bg-green-600" type="submit">
+              <Button className="bg-green-500 hover:bg-green-400" type="submit">
                 Login
               </Button>
             </div>
@@ -85,7 +84,7 @@ const Login = () => {
         <CardFooter className="flex justify-center">
           <p className="text-md text-center">
             You are not register? Please{" "}
-            <NavLink className="text-blue-500 font-semibold" to="/register">
+            <NavLink className="text-green-500 font-semibold" to="/register">
               Register
             </NavLink>
           </p>

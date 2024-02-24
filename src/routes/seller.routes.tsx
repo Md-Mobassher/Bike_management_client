@@ -1,5 +1,4 @@
 import SellerDashboard from "@/pages/seller/SellerDashboard";
-import FilterBike from "@/pages/seller/bikeManagement/FilterBike";
 import AddBike from "@/pages/seller/bikeManagement/AddBike";
 import BulkDeleteBike from "@/pages/seller/bikeManagement/BulkDeleteBike";
 import SalesHistory from "@/pages/seller/salesManagement/SalesHistory";

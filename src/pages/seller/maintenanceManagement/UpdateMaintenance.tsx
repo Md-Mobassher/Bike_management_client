@@ -1,6 +1,5 @@
 import BikeForm from "@/components/form/BikeForm";
 import BikeInput from "@/components/form/BikeInput";
-import BikeSelect from "@/components/form/BikeSelect";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,12 +8,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { maintenancePendingOptions } from "@/constant/global";
 import { useUpdateMaintenanceMutation } from "@/redux/features/maintenance/maintenanceApi";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 
-const UpdateMaintenance = ({ id }) => {
+const UpdateMaintenance: React.FC<{ id: string }> = ({ id }) => {
   const [updateMaintenance] = useUpdateMaintenanceMutation();
 
   const onSubmit = async (data: FieldValues) => {

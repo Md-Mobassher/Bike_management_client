@@ -22,7 +22,10 @@ const BikeInput = ({
       <Controller
         name={name}
         render={({ field }) => (
-          <Form.Item label={label} className="font-semibold mb-5">
+          <Form.Item
+            label={label}
+            className="font-semibold lg:mb-5 md:mb-4 mb-3"
+          >
             <Input
               className="font-normal font-mono"
               {...field}

@@ -1,5 +1,6 @@
+import BikeDetails from "@/pages/buyer/BikeManagement/BikeDetails";
+import RequestMaintenance from "@/pages/buyer/BikeManagement/RequestMaintenance";
 import BuyerDashboard from "@/pages/buyer/BuyerDashboard";
-import AddBikeModal from "@/pages/seller/bikeManagement/AddBike";
 
 export const buyerPaths = [
   {
@@ -8,13 +9,15 @@ export const buyerPaths = [
     element: <BuyerDashboard />,
   },
   {
-    name: "Bike Management",
-    children: [
-      {
-        name: "Add New Bike",
-        path: "add-bike",
-        element: <AddBikeModal />,
-      },
-    ],
+    path: "request-maintenance/:id",
+    element: <RequestMaintenance />,
   },
+  {
+    path: "bikes/:id",
+    element: <BikeDetails />,
+  },
+  // {
+  //   name: "Bike Management",
+  //   children: [],
+  // },
 ];

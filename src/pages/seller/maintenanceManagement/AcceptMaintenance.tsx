@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Loading from "@/components/ui/Loading";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -101,7 +100,7 @@ const AcceptMaintenance = () => {
                 )}
               </TableCell>
               <TableCell className="text-right">
-                {maintenance?.discount?.percentage}
+                {maintenance?.discount?.percentage} %
               </TableCell>
               <TableCell className="text-right">
                 {maintenance?.discount?.fixedAmount}
