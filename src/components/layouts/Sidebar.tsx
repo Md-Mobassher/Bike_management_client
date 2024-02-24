@@ -2,9 +2,11 @@ import { TUser, selectCurrentToken } from "@/redux/features/auth/authSlice";
 import { useAppSelector } from "@/redux/hooks";
 import { buyerPaths } from "@/routes/buyer.routes";
 import { sellerPaths } from "@/routes/seller.routes";
+import { TSidebarItem } from "@/types/sidebar.type";
 import { sidebarItemsGenerator } from "@/utils/sidebarItemsGenerators";
 import { verifyToken } from "@/utils/verifyToken";
 import { Layout, Menu } from "antd";
+import { MenuItemType } from "antd/es/menu/hooks/useItems";
 const { Sider } = Layout;
 
 const userRole = {
@@ -21,16 +23,16 @@ const Sidebar = () => {
     user = verifyToken(token);
   }
 
-  let sidebarItems;
+  let sidebarItems: TSidebarItem[] | undefined;
 
   switch ((user as TUser)!.role) {
     case userRole.SELLER:
       sidebarItems = sidebarItemsGenerator(sellerPaths, userRole.SELLER);
+      console.log(sidebarItems);
       break;
     case userRole.BUYER:
       sidebarItems = sidebarItemsGenerator(buyerPaths, userRole.BUYER);
       break;
-
     default:
       break;
   }
@@ -53,7 +55,7 @@ const Sidebar = () => {
         className="bg-white"
         mode="inline"
         defaultSelectedKeys={["4"]}
-        items={sidebarItems}
+        items={sidebarItems as MenuItemType[]}
       />
     </Sider>
   );

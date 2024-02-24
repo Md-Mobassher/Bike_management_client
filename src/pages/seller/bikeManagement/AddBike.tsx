@@ -45,8 +45,6 @@ const AddBikeModal = () => {
       formData.append("data", JSON.stringify(bikeInfo));
       formData.append("file", data.bikeImage);
 
-      console.log(Object.fromEntries(formData));
-
       await addBike(formData).unwrap();
 
       toast.success("Bike Added Successfully.", {

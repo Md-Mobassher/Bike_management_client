@@ -40,13 +40,10 @@ const UpdateMaintenance: React.FC<{ id: string }> = ({ id }) => {
       );
     } catch (err) {
       console.log(err);
-      toast.error(
-        err?.data?.message || " Failed to updating maintenance request",
-        {
-          id: toastId,
-          duration: 3000,
-        }
-      );
+      toast.error(" Failed to updating maintenance request", {
+        id: toastId,
+        duration: 3000,
+      });
     }
   };
 

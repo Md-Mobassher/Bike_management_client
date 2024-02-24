@@ -12,12 +12,7 @@ import { toast } from "sonner";
 
 const BulkDeleteBike = () => {
   const [selectedBikeIds, setSelectedBikeIds] = useState<string[]>([]);
-  const {
-    data: bikes,
-    isLoading,
-    isError,
-    error,
-  } = useGetAllBikesQuery(undefined);
+  const { data: bikes, isLoading, isError } = useGetAllBikesQuery(undefined);
   const [deleteBikes] = useBulkDeleteBikesMutation();
 
   if (isLoading) {
@@ -25,7 +20,6 @@ const BulkDeleteBike = () => {
   }
 
   if (isError) {
-    console.error(error);
     return <div>Error loading bikes. Please try again later.</div>;
   }
 

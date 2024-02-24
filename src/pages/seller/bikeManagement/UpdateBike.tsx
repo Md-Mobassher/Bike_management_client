@@ -82,13 +82,10 @@ const UpdateBike = () => {
       });
       navigate(`/seller/dashboard`);
     } catch (err) {
-      toast.error(
-        err?.data?.message || "Failed to update bike. Something went wrong",
-        {
-          id: toastId,
-          duration: 3000,
-        }
-      );
+      toast.error("Failed to update bike. Something went wrong", {
+        id: toastId,
+        duration: 3000,
+      });
     }
   };
 
@@ -138,7 +135,7 @@ const UpdateBike = () => {
                     />
                   </Col>
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-                    <BikeDatePicker name="releaseDate" label="Release Date" /> 
+                    <BikeDatePicker name="releaseDate" label="Release Date" />
                   </Col>
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                     <BikeInput

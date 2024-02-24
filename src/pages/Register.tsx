@@ -53,7 +53,6 @@ const Register = () => {
       });
       navigate(`/login`);
     } catch (err) {
-      console.log(err);
       toast.error("Failed to Create User. Something went wrong", {
         id: toastId,
         duration: 3000,

@@ -32,7 +32,6 @@ const DuplicateBike = () => {
   }
 
   if (isError) {
-    console.error(isError);
     return <div>Error loading bike. Please try again later.</div>;
   }
   console.log(bikeData?.data);
@@ -87,7 +86,7 @@ const DuplicateBike = () => {
       });
       navigate(`/seller/dashboard`);
     } catch (err) {
-      toast.error(err?.data.message || "Failed to Duplicate bike.", {
+      toast.error("Failed to Duplicate bike.", {
         id: toastId,
         duration: 3000,
       });

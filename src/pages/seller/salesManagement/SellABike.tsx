@@ -34,13 +34,10 @@ const SellBikeModal: React.FC<{ id: string }> = ({ id }) => {
         duration: 3000,
       });
     } catch (err) {
-      toast.error(
-        err?.data?.message || " Failed to sell bike .An error occurred",
-        {
-          id: toastId,
-          duration: 3000,
-        }
-      );
+      toast.error(" Failed to sell bike .An error occurred", {
+        id: toastId,
+        duration: 3000,
+      });
     }
   };
 

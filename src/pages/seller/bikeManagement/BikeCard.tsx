@@ -22,7 +22,7 @@ const BikeCard = ({
 }: TBike) => {
   const navigate = useNavigate();
 
-  const [deleteABike, { isLoading, isError }] = useDeleteABikeMutation();
+  const [deleteABike, { isLoading }] = useDeleteABikeMutation();
 
   // bike details
   const handleDuplicate = (id: string) => {
@@ -48,13 +48,10 @@ const BikeCard = ({
         duration: 3000,
       });
     } catch (err) {
-      {
-        isError &&
-          toast.error(err?.data?.message || "Bike delete failed.", {
-            id: toastId,
-            duration: 3000,
-          });
-      }
+      toast.error("Bike delete failed.", {
+        id: toastId,
+        duration: 3000,
+      });
     }
   };
 

@@ -28,7 +28,7 @@ const BikeDetails = () => {
   }
 
   if (isError) {
-    console.error(error);
+    console.error(isError);
     return (
       <div className="text-center py-14 text-red-500 text-lg font-semibold ">
         Error loading bikes. Please try again later.

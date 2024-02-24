@@ -27,16 +27,16 @@ const RequestMaintenance = () => {
         serviceDetails: data.serviceDetails,
         notes: data.notes,
       };
-      console.log(requestmaintenanceInfo);
-      const res = await requestMaintenance(requestmaintenanceInfo);
 
-      toast.success(res?.message || "Maintenance Request Successfull.", {
+      await requestMaintenance(requestmaintenanceInfo);
+
+      toast.success("Maintenance Request Successfull.", {
         id: toastId,
         duration: 3000,
       });
       navigate(`/buyer/dashboard`);
     } catch (err) {
-      toast.error(err?.data?.message || "Maintenance Request Failed.", {
+      toast.error("Maintenance Request Failed.", {
         id: toastId,
         duration: 3000,
       });

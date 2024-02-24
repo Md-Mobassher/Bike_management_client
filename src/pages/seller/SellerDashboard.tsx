@@ -41,7 +41,7 @@ const SellerDashboard = () => {
 
     try {
       const filterInfo = Object.entries(data)
-        .filter(([key, value]) => value !== undefined)
+        .filter(([value]) => value !== undefined)
         .map(([key, value]) => ({ name: [key], value: value }));
 
       setFilter(filterInfo);
@@ -51,7 +51,7 @@ const SellerDashboard = () => {
         duration: 3000,
       });
     } catch (err) {
-      toast.error(err?.data?.message || "Failed to Filter bike.", {
+      toast.error("Failed to Filter bike.", {
         id: toastId,
         duration: 3000,
       });

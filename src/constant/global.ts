@@ -1,5 +1,3 @@
-import { Value } from "@radix-ui/react-select";
-
 export const genders = ["Male", "Female", "Other"];
 
 export const genderOptions = genders.map((item) => ({
