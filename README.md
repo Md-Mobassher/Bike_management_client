@@ -19,6 +19,7 @@ Welcome to the Bike Management System, a comprehensive solution designed to effi
 ## Table of Contents
 
 - [Live Demo](#live-link)
+- [Github repo](#github-repo)
 - [Features](#features)
 - [Authentication](#authentication)
 - [Bike Management](#bike-management)
@@ -44,7 +45,7 @@ Check out the live link of the Bike Management System [here](https://bike-manage
 
 ### Github repo link:
 
-- https://github.com/Md-Mobassher/Bike_management_client
+Check out the Github Repo of the Bike Management System [here](https://github.com/Porgramming-Hero-web-course/l2-b2-assignment-6-fronten-Md-Mobassher).
 
 ## Features
 
