@@ -90,11 +90,20 @@ export const bikeSuspensionTypesOptions = bikeSuspensionTypes.map((item) => ({
   label: item,
 }));
 
-export const maintenancePendingTypes = ["Pending", "Accepted"];
+export const bikeServiceNames = [
+  "Basic Tune-Up",
+  "Complete Overhaul",
+  "Oil Change",
+  "Brake Check",
+  "Tire Replacement",
+  "Suspension Service",
+  "Chain Replacement",
+  "Frame Alignment",
+  "Wheel Bearing Greasing",
+  "Electronic Shifting Calibration",
+];
 
-export const maintenancePendingOptions = maintenancePendingTypes.map(
-  (item) => ({
-    value: item,
-    label: item,
-  })
-);
+export const bikeServiceNamesOptions = bikeServiceNames.map((item) => ({
+  value: item,
+  label: item,
+}));

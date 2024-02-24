@@ -1,16 +1,8 @@
 # Bike Management System
 
-### Github repo link:
-
-- https://github.com/Md-Mobassher/Bike_management_client
-
-### Live Link: https://bike-management-client-alpha.vercel.app
-
-## Product Information
-
 ### Product Name
 
-Bike Management Dashboard
+Bike Management System
 
 ### Product Price
 
@@ -22,17 +14,46 @@ Unlimited
 
 ## Project Overview
 
-The Bike Management Dashboard is a comprehensive solution designed for efficiently managing bike inventory, tracking sales, and analyzing sales history. The dashboard incorporates essential features such as authentication, CRUD operations, state management, real-time UI updates, and advanced bike filtering.
+Welcome to the Bike Management System, a comprehensive solution designed to efficiently manage bike inventory, track sales, and analyze sales history. This system incorporates essential features such as authentication, CRUD operations, state management, real-time UI updates, and advanced bike filtering.
 
-## Authentication
+## Table of Contents
 
-### User Registration and Login
+- [Live Demo](#live-link)
+- [Features](#features)
+- [Authentication](#authentication)
+- [Bike Management](#bike-management)
+  - [CRUD Operations](#crud-operations)
+  - [Filtering System](#filtering-system)
+- [Maintenance and Servicing](#maintenance-and-servicing)
+- [Sales Management](#sales-management)
+  - [Selling Products](#selling-products)
+  - [Sales History](#sales-history)
+- [Bike Filtering](#bike-filtering)
+- [User Interface Features](#user-interface-features)
+- [State Management](#state-management)
+- [Invoice Printing](#invoice-printing)
+- [Bulk Delete Product Options](#bulk-delete-product-options)
+- [Duplicate & Edit Feature](#duplicate--edit-feature)
+- [Technical Requirements](#technical-requirements)
+- [Getting Started](#getting-started)
+- [Contribution Guidelines](#contribution-guidelines)
 
-- Users must register and log in to access the dashboard.
-- Secure authentication using JWT (JSON Web Tokens).
-- Single role for users responsible for managing the system.
+## Live Link
 
-## Functionality
+Check out the live link of the Bike Management System [here](https://bike-management-client-alpha.vercel.app/).
+
+### Github repo link:
+
+- https://github.com/Md-Mobassher/Bike_management_client
+
+## Features
+
+### Authentication
+
+Users can register and log in to access the dashboard securely using JSON Web Tokens (JWT). The system has two user roles:
+
+- **Buyer:** Can search for products, view available inventory, and make maintenance and servicing requests.
+- **Seller:** Has additional permissions related to managing inventory and sales, including adding new products, updating existing product details, managing sales, and accepting maintenance requests.
 
 ### Bike Management
 
@@ -48,6 +69,12 @@ The Bike Management Dashboard is a comprehensive solution designed for efficient
 - Robust filtering system for effective bike selection.
 - Filtering options include price range, release date, brand, model, type, size, color, and additional relevant parameters.
 
+### Maintenance and Servicing
+
+- Dedicated section for maintaining detailed records of each bike's maintenance history.
+- Record date of the last servicing, next scheduled servicing date, service details (e.g., oil change, brake check, tire replacement), and any additional notes.
+- Apply discounts for bike servicing based on previous servicing records.
+
 ### Sales Management
 
 #### Selling Products
@@ -57,34 +84,47 @@ The Bike Management Dashboard is a comprehensive solution designed for efficient
 - Sale form includes quantity, buyer name, and sale date.
 - If the quantity reaches zero, the product is automatically removed from the inventory.
 
-### Sales History
+#### Sales History
 
-#### View Sales History
+- View sales history categorized by weekly, daily, monthly, and yearly periods.
 
-- Categorized by weekly, daily, monthly, and yearly periods.
+### Bike Filtering
+
+Implement a comprehensive bike filter system to optimize inventory management. The filter options cater specifically to bikes and cycling:
+
+- Filter by Price: Allow users to set a price range for bikes.
+- Filter by Release Date: Provide options for filtering bikes based on their release or production date.
+- Filter by Brand: Implement real-time search functionality for bike brands.
+- Filter by Model: Enable searching by bike model for unique identification.
+- Filter by Type: Categorize bikes into types (e.g., road, mountain, hybrid).
+- Filter by Size: Include a filter for bike sizes.
+- Filter by Color: Allow filtering bikes based on their color.
+- Additional Relevant Filter Parameters: Introduce other relevant filter parameters such as frame material, suspension type, or any custom attributes associated with the bikes.
 
 ### User Interface Features
 
-- Real-time UI updates for product changes and sales.
-- Utilizes RTK Query for efficient CRUD operations.
-- Implements Re-fetching functionality for data accuracy.
+- Gracefully update the UI in real-time when changes occur (e.g., product updates, sales, etc.).
+- Utilize RTK Query for efficient CRUD operations.
+- Implement Re-fetching functionality to ensure data accuracy and consistency.
 - Mobile-responsive design for a seamless user experience on various devices.
 
 ### State Management
 
-- Utilizes Redux for maintaining a consistent application state.
+- Utilize Redux for maintaining a consistent application state.
+
+### Invoice Printing
+
+- Integrate a feature allowing users to generate and print invoices for sales transactions.
+- The invoice should include details such as bike name, quantity, price, date of the sale, total amount, and any additional relevant information.
 
 ### Bulk Delete Product Options
 
-- Efficiently manages inventory through bulk delete feature.
+- Enable users to efficiently manage their inventory by implementing a bulk delete feature.
+- Provide a user-friendly interface to select and delete multiple products simultaneously.
 
 ### Duplicate & Edit Feature
 
-- Users can duplicate and edit existing products to create variants.
-
-### Additional Features
-
-- Implementation of relevant features enhancing dashboard usability.
+- Implement a "Duplicate & Edit" feature allowing users to create variants by duplicating and editing existing products.
 
 ## Technical Requirements
 
@@ -92,8 +132,7 @@ The Bike Management Dashboard is a comprehensive solution designed for efficient
 - Implements Redux for state management.
 - Real-time UI updates with graceful handling.
 - Re-fetching functionality for data accuracy.
-- Applies tags for improved organization.
-- Optimized for mobile responsiveness.
+- Mobile-responsive design.
 - Over 10 commits in the GitHub repository.
 - Manual code writing without AI tools or libraries.
 - Modular pattern recommended for enhanced code organization.
@@ -112,3 +151,5 @@ The Bike Management Dashboard is a comprehensive solution designed for efficient
 3. Make changes and commit.
 4. Push changes to the branch.
 5. Create a pull request.
+
+Feel free to explore the Bike Management System and contribute to its development!
