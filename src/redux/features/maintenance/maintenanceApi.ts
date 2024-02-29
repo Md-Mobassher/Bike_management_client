@@ -22,6 +22,24 @@ const maintenanceApi = baseApi.injectEndpoints({
       providesTags: ["maintenance"],
     }),
 
+    getMyRequestedMaintenance: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+        if (args) {
+          args.forEach((item: TQueryParam) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+
+        return {
+          url: "/maintenance/me",
+          method: "GET",
+          params: params,
+        };
+      },
+      providesTags: ["maintenance"],
+    }),
+
     requestMaintenance: builder.mutation({
       query: (maintenanceInfo) => ({
         url: `/maintenance`,
@@ -44,6 +62,7 @@ const maintenanceApi = baseApi.injectEndpoints({
 
 export const {
   useGetAllMaintenanceQuery,
+  useGetMyRequestedMaintenanceQuery,
   useRequestMaintenanceMutation,
   useUpdateMaintenanceMutation,
 } = maintenanceApi;

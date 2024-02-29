@@ -28,7 +28,6 @@ const Sidebar = () => {
   switch ((user as TUser)!.role) {
     case userRole.SELLER:
       sidebarItems = sidebarItemsGenerator(sellerPaths, userRole.SELLER);
-      console.log(sidebarItems);
       break;
     case userRole.BUYER:
       sidebarItems = sidebarItemsGenerator(buyerPaths, userRole.BUYER);

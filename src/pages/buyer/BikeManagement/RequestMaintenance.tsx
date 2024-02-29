@@ -17,7 +17,7 @@ const RequestMaintenance = () => {
   const [requestMaintenance] = useRequestMaintenanceMutation();
 
   const onSubmit = async (data: FieldValues) => {
-    const toastId = toast.loading("Selling a bike...");
+    const toastId = toast.loading("Requesting for maintenance...");
 
     try {
       const requestmaintenanceInfo = {

@@ -17,6 +17,7 @@ const sellApi = baseApi.injectEndpoints({
           params: params,
         };
       },
+      providesTags: ["sell"],
     }),
 
     getInvoice: builder.query({
@@ -32,7 +33,7 @@ const sellApi = baseApi.injectEndpoints({
         method: "POST",
         body: salesInfo,
       }),
-      invalidatesTags: ["bike"],
+      invalidatesTags: ["bike", "sell"],
     }),
   }),
 });

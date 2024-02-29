@@ -9,15 +9,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetAllMaintenanceQuery } from "@/redux/features/maintenance/maintenanceApi";
-import UpdateMaintenance from "./UpdateMaintenance";
+import { useGetMyRequestedMaintenanceQuery } from "@/redux/features/maintenance/maintenanceApi";
 
-const AcceptMaintenance = () => {
+const RequestedMaintenance = () => {
   const {
     data: maintenanceData,
     isLoading,
     isError,
-  } = useGetAllMaintenanceQuery(undefined);
+  } = useGetMyRequestedMaintenanceQuery(undefined);
   if (isLoading) {
     return <Loading />;
   }
@@ -29,18 +28,18 @@ const AcceptMaintenance = () => {
   return (
     <div className="lg:p-10 md:p-8 p-5">
       <h1 className="text-2xl font-bold text-center text-green-500 mb-7">
-        Maintenance Request
+        Requested For Maintenance
       </h1>
       <Table className="lg:px-10 md:px-5 px-2 pb-10 mx-auto ">
         <TableCaption>
           {maintenanceData?.data?.length === 0 ? (
             <div className="text-center py-10 text-xl font-semibold ">
-              No Maintenance Request...
+              No Requested Maintenance...
             </div>
           ) : (
             <div className="text-md font-semibold my-10">
               {" "}
-              A list of Bike Maintenance Request.
+              A list of Requested Maintenance.
             </div>
           )}
         </TableCaption>
@@ -61,7 +60,6 @@ const AcceptMaintenance = () => {
             <TableHead className=" text-white">Status</TableHead>
             <TableHead className=" text-white">Discount %</TableHead>
             <TableHead className=" text-white">Total</TableHead>
-            <TableHead className="text-right text-white">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -105,9 +103,6 @@ const AcceptMaintenance = () => {
               <TableCell className="text-right">
                 {maintenance?.discount?.fixedAmount}
               </TableCell>
-              <TableCell className="text-right">
-                <UpdateMaintenance id={maintenance._id} />
-              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -116,4 +111,4 @@ const AcceptMaintenance = () => {
   );
 };
 
-export default AcceptMaintenance;
+export default RequestedMaintenance;

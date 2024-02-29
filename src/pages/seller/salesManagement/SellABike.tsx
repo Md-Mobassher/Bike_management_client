@@ -82,7 +82,6 @@ const SellBikeModal: React.FC<{ id: string }> = ({ id }) => {
                 placeholder="Sales Date"
                 {...register("salesDate")}
               />
-              0.
             </div>
 
             <div className="flex lg:justify-end md:justify-end justify-center mt-5">
