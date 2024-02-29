@@ -5,7 +5,6 @@ const maintenanceApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllMaintenance: builder.query({
       query: (args) => {
-        console.log(args);
         const params = new URLSearchParams();
         if (args) {
           args.forEach((item: TQueryParam) => {
