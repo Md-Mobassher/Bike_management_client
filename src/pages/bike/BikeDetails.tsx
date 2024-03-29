@@ -49,8 +49,8 @@ const BikeDetails = () => {
         </CardContent>
         <CardFooter>
           <div className="flex gap-3">
-            <Button className="bg-yellow-600">Update</Button>
-            <Button className="bg-red-700">Delete</Button>
+            {/* <Button className="bg-yellow-600">Update</Button>
+            <Button className="bg-red-700">Delete</Button> */}
           </div>
         </CardFooter>
       </Card>

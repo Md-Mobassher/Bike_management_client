@@ -1,3 +1,5 @@
+import BikeForm from "@/components/form/BikeForm";
+import BikeInput from "@/components/form/BikeInput";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,38 +8,40 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
-import { setUser } from "@/redux/features/auth/authSlice";
+import { TUser, setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { verifyToken } from "@/utils/verifyToken";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { register, handleSubmit } = useForm();
-
   const [login] = useLoginMutation();
 
   const onSubmit = async (data: FieldValues) => {
-    const toastId = toast.loading("Logging in");
-
+    const toastId = toast.loading("Logging in...");
     try {
       const userInfo = {
         email: data.email,
         password: data.password,
       };
       const res = await login(userInfo).unwrap();
-      const user = verifyToken(res.data.accessToken);
+
+      console.log(res);
+      const user = verifyToken(res.data.accessToken) as TUser;
+
       dispatch(setUser({ user: user, token: res.data.accessToken }));
-      toast.success("Logged in", { id: toastId, duration: 3000 });
-      navigate(`/`);
+
+      toast.success("Logged in", { id: toastId, duration: 2000 });
+      navigate(`/${user.role}/dashboard`);
     } catch (err) {
-      toast.error("Something went wrong", { id: toastId, duration: 3000 });
+      toast.error(" Failed to Logged in. Something went wrong", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
 
@@ -52,45 +56,35 @@ const Login = () => {
     >
       <Card className="w-[360px]">
         <CardHeader>
-          <CardTitle
-            style={{
-              paddingBottom: "10px",
-              fontSize: "28px",
-              lineHeight: "40px",
-              fontWeight: 600,
-            }}
-          >
+          <CardTitle className="text-2xl font-bold text-center text-green-500">
             Login Into Bike Management Dashboard
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid w-full items-center gap-5">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Email</Label>
-                <Input
-                  id="email"
-                  placeholder="Your Email"
-                  {...register("email")}
-                />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  placeholder="Your Password"
-                  {...register("password")}
-                />
-              </div>
-
-              <Button type="submit">Login</Button>
+          <BikeForm onSubmit={onSubmit}>
+            <BikeInput
+              type="email"
+              name="email"
+              label="Email"
+              placeholder="Your Email"
+            />
+            <BikeInput
+              type="text"
+              name="password"
+              label="Password"
+              placeholder="Your Password"
+            />
+            <div className="flex justify-center mt-5">
+              <Button className="bg-green-500 hover:bg-green-400" type="submit">
+                Login
+              </Button>
             </div>
-          </form>
+          </BikeForm>
         </CardContent>
-        <CardFooter>
-          <p className="text-md">
+        <CardFooter className="flex justify-center">
+          <p className="text-md text-center">
             You are not register? Please{" "}
-            <NavLink className="text-blue-500 font-semibold" to="/register">
+            <NavLink className="text-green-500 font-semibold" to="/register">
               Register
             </NavLink>
           </p>
