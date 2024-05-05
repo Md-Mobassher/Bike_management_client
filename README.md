@@ -149,6 +149,8 @@ Implement a comprehensive bike filter system to optimize inventory management. T
 
 Feel free to explore the Bike Management System and contribute to its development!
 
-### More Projects and Information
+---
+
+## More Projects and Information
 
 Explore additional projects and find out more about my work on my portfolio website: [Portfolio Mobassher](https://dev-mobassher.web.app).
