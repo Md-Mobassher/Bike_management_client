@@ -1,17 +1,5 @@
 # Bike Management System
 
-### Product Name
-
-Bike Management System
-
-### Product Price
-
-Free and Open Source
-
-### Product Quantity
-
-Unlimited
-
 ## Project Overview
 
 Welcome to the Bike Management System, a comprehensive solution designed to efficiently manage bike inventory, track sales, and analyze sales history. This system incorporates essential features such as authentication, CRUD operations, state management, real-time UI updates, and advanced bike filtering.
@@ -41,6 +29,17 @@ Welcome to the Bike Management System, a comprehensive solution designed to effi
 ## Deployment
 
 Live Link : [Bike Management System](https://bike-management-client-alpha.vercel.app)
+
+## Login Credentials
+
+- **Seller Login Credentials**
+
+  - Email: mobassherpautex@gmail.com
+  - Password: Mobassher123
+
+- **Buyer Login Credentials**
+  - Email: raiyan@gmail.com
+  - Password: Raiyan123
 
 ## Features
 
