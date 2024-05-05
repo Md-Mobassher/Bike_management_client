@@ -19,7 +19,6 @@ Welcome to the Bike Management System, a comprehensive solution designed to effi
 ## Table of Contents
 
 - [Live Demo](#live-link)
-- [Github repo](#github-repo)
 - [Features](#features)
 - [Authentication](#authentication)
 - [Bike Management](#bike-management)
@@ -39,13 +38,9 @@ Welcome to the Bike Management System, a comprehensive solution designed to effi
 - [Getting Started](#getting-started)
 - [Contribution Guidelines](#contribution-guidelines)
 
-## Live Link
+## Deployment
 
-Check out the live link of the Bike Management System [here](https://bike-management-client-alpha.vercel.app/).
-
-### Github repo link:
-
-Check out the Github Repo of the Bike Management System [here](https://github.com/Porgramming-Hero-web-course/l2-b2-assignment-6-fronten-Md-Mobassher).
+Live Link : [Bike Management System](https://bike-management-client-alpha.vercel.app)
 
 ## Features
 
@@ -154,3 +149,7 @@ Implement a comprehensive bike filter system to optimize inventory management. T
 5. Create a pull request.
 
 Feel free to explore the Bike Management System and contribute to its development!
+
+### More Projects and Information
+
+Explore additional projects and find out more about my work on my portfolio website: [Portfolio Mobassher](https://dev-mobassher.web.app).

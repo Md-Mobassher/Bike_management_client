@@ -30,7 +30,6 @@ const Login = () => {
       };
       const res = await login(userInfo).unwrap();
 
-      console.log(res);
       const user = verifyToken(res.data.accessToken) as TUser;
 
       dispatch(setUser({ user: user, token: res.data.accessToken }));

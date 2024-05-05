@@ -17,6 +17,7 @@ const RequestedMaintenance = () => {
     isLoading,
     isError,
   } = useGetMyRequestedMaintenanceQuery(undefined);
+  console.log(maintenanceData);
   if (isLoading) {
     return <Loading />;
   }
@@ -63,48 +64,49 @@ const RequestedMaintenance = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {maintenanceData?.data?.map((maintenance: any) => (
-            <TableRow
-              key={maintenance._id}
-              className="bg-purple-100  hover:bg-white border-b border-green-200"
-            >
-              <TableCell className="font-medium">
-                {maintenance.bikeId.bikeId}
-              </TableCell>
-              <TableCell className="font-medium">
-                {maintenance.buyerId.name}
-              </TableCell>
-              <TableCell>{maintenance.lastServicingDate}</TableCell>
-              <TableCell>{maintenance.nextServicingDate}</TableCell>
-              <TableCell className="text-start">
-                {maintenance.serviceDetails.map((item: string) => (
-                  <ul>
-                    <li className="list-item">{item}</li>
-                  </ul>
-                ))}
-              </TableCell>
-              <TableCell className="">
-                {maintenance.notes ? <p>{maintenance.notes}</p> : "---"}
-              </TableCell>
-              <TableCell className="">
-                {maintenance.isPending ? (
-                  <p className="border border-green-300 bg-yellow-200 hover:bg-slate-300 rounded-lg p-1 text-center  ">
-                    Pending
-                  </p>
-                ) : (
-                  <p className="border border-green-300 bg-green-300 hover:bg-slate-300 rounded-lg p-1 text-center  ">
-                    Accepted
-                  </p>
-                )}
-              </TableCell>
-              <TableCell className="text-right">
-                {maintenance?.discount?.percentage} %
-              </TableCell>
-              <TableCell className="text-right">
-                {maintenance?.discount?.fixedAmount}
-              </TableCell>
-            </TableRow>
-          ))}
+          {maintenanceData &&
+            maintenanceData?.data?.map((maintenance: any) => (
+              <TableRow
+                key={maintenance._id}
+                className="bg-purple-100  hover:bg-white border-b border-green-200"
+              >
+                <TableCell className="font-medium">
+                  {maintenance.bikeId.bikeId && maintenance.bikeId.bikeId}
+                </TableCell>
+                <TableCell className="font-medium">
+                  {maintenance.buyerId.name}
+                </TableCell>
+                <TableCell>{maintenance.lastServicingDate}</TableCell>
+                <TableCell>{maintenance.nextServicingDate}</TableCell>
+                <TableCell className="text-start">
+                  {maintenance.serviceDetails.map((item: string) => (
+                    <ul>
+                      <li className="list-item">{item}</li>
+                    </ul>
+                  ))}
+                </TableCell>
+                <TableCell className="">
+                  {maintenance.notes ? <p>{maintenance.notes}</p> : "---"}
+                </TableCell>
+                <TableCell className="">
+                  {maintenance.isPending ? (
+                    <p className="border border-green-300 bg-yellow-200 hover:bg-slate-300 rounded-lg p-1 text-center  ">
+                      Pending
+                    </p>
+                  ) : (
+                    <p className="border border-green-300 bg-green-300 hover:bg-slate-300 rounded-lg p-1 text-center  ">
+                      Accepted
+                    </p>
+                  )}
+                </TableCell>
+                <TableCell className="text-right">
+                  {maintenance?.discount?.percentage} %
+                </TableCell>
+                <TableCell className="text-right">
+                  {maintenance?.discount?.fixedAmount}
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </div>

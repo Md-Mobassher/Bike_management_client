@@ -18,6 +18,7 @@ const AcceptMaintenance = () => {
     isLoading,
     isError,
   } = useGetAllMaintenanceQuery(undefined);
+  console.log(maintenanceData);
   if (isLoading) {
     return <Loading />;
   }
@@ -33,7 +34,7 @@ const AcceptMaintenance = () => {
       </h1>
       <Table className="lg:px-10 md:px-5 px-2 pb-10 mx-auto ">
         <TableCaption>
-          {maintenanceData?.data?.length === 0 ? (
+          {maintenanceData.data.length === 0 ? (
             <div className="text-center py-10 text-xl font-semibold ">
               No Maintenance Request...
             </div>
@@ -65,13 +66,13 @@ const AcceptMaintenance = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {maintenanceData?.data?.map((maintenance: any) => (
+          {maintenanceData.data.map((maintenance: any) => (
             <TableRow
               key={maintenance._id}
               className="bg-purple-100  hover:bg-white border-b border-green-200"
             >
               <TableCell className="font-medium">
-                {maintenance.bikeId.bikeId}
+                {maintenance?.bikeId?.bikeId}
               </TableCell>
               <TableCell className="font-medium">
                 {maintenance.buyerId.name}
@@ -79,17 +80,19 @@ const AcceptMaintenance = () => {
               <TableCell>{maintenance.lastServicingDate}</TableCell>
               <TableCell>{maintenance.nextServicingDate}</TableCell>
               <TableCell className="text-start">
-                {maintenance.serviceDetails.map((item: string) => (
-                  <ul>
-                    <li className="list-item">{item}</li>
-                  </ul>
-                ))}
+                {maintenance?.serviceDetails?.map(
+                  (item: string, index: number) => (
+                    <ul key={(index = index + 1)}>
+                      <li className="list-item">{item}</li>
+                    </ul>
+                  )
+                )}
               </TableCell>
               <TableCell className="">
-                {maintenance.notes ? <p>{maintenance.notes}</p> : "---"}
+                {maintenance?.notes ? <p>{maintenance.notes}</p> : "---"}
               </TableCell>
               <TableCell className="">
-                {maintenance.isPending ? (
+                {maintenance?.isPending ? (
                   <p className="border border-green-300 bg-yellow-200 hover:bg-slate-300 rounded-lg p-1 text-center  ">
                     Pending
                   </p>
@@ -106,12 +109,13 @@ const AcceptMaintenance = () => {
                 {maintenance?.discount?.fixedAmount}
               </TableCell>
               <TableCell className="text-right">
-                <UpdateMaintenance id={maintenance._id} />
+                <UpdateMaintenance id={maintenance?._id} />
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+      {maintenanceData.data.length}
     </div>
   );
 };

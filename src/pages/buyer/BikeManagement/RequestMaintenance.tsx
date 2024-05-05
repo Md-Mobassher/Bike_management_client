@@ -13,6 +13,7 @@ import { toast } from "sonner";
 
 const RequestMaintenance = () => {
   const { id } = useParams();
+
   const navigate = useNavigate();
   const [requestMaintenance] = useRequestMaintenanceMutation();
 
@@ -21,12 +22,13 @@ const RequestMaintenance = () => {
 
     try {
       const requestmaintenanceInfo = {
-        bikeId: id,
-        lastServicingDate: data.lastServicingDate,
-        nextServicingDate: data.nextServicingDate,
+        bikeId: id as string,
+        lastServicingDate: new Date(data.lastServicingDate).toISOString(),
+        nextServicingDate: new Date(data.nextServicingDate).toISOString(),
         serviceDetails: data.serviceDetails,
         notes: data.notes,
       };
+      console.log(requestmaintenanceInfo);
 
       await requestMaintenance(requestmaintenanceInfo);
 
