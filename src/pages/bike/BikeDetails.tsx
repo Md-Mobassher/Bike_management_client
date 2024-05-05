@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Loading from "@/components/ui/Loading";
 import { useGetSingleBikeQuery } from "@/redux/features/bike/bikeApi";
@@ -48,10 +47,7 @@ const BikeDetails = () => {
           <p>Type: {type}</p>
         </CardContent>
         <CardFooter>
-          <div className="flex gap-3">
-            {/* <Button className="bg-yellow-600">Update</Button>
-            <Button className="bg-red-700">Delete</Button> */}
-          </div>
+          <div className="flex gap-3"></div>
         </CardFooter>
       </Card>
     </div>

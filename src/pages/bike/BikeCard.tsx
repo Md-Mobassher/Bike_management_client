@@ -4,11 +4,11 @@ import {
   useDeleteABikeMutation,
   useGetAllBikesQuery,
 } from "@/redux/features/bike/bikeApi";
-import { bike } from "@/types/bike.type";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import SellBikeModal from "../sell/SellABike";
 import UpdateBikeModal from "./UpdateBike";
+import { TBike } from "@/types/bike.type";
 
 const BikeCard = ({
   _id,
@@ -19,7 +19,7 @@ const BikeCard = ({
   model,
   price,
   quantity,
-}: bike) => {
+}: TBike) => {
   const navigate = useNavigate();
 
   const { refetch } = useGetAllBikesQuery(undefined);
