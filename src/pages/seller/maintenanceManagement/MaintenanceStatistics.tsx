@@ -1,22 +1,22 @@
 import AnalyticsPieChart from "@/components/ui/AnalyticsPieChart";
 import AnalyticsChart from "../../../components/ui/AnalyticChart";
-import StaticsCard from "./StaticsCard";
+import StaticsCard from "../bikeManagement/StaticsCard";
 
-type BikeAnalyticsData = {
-  totalBikes: number;
-  totalSales: number;
-  totalAvailableForSale: number;
+type MaintenanceAnalyticsData = {
+  totalRequests: number;
+  totalAccepted: number;
+  totalPending: number;
 };
 
-type BikeStatisticsProps = {
-  bikes: BikeAnalyticsData;
+type MaintenanceStatisticsProps = {
+  maintenance: MaintenanceAnalyticsData;
 };
 
-const BikeStatistics = ({ bikes }: BikeStatisticsProps) => {
+const MaintenanceStatistics = ({ maintenance }: MaintenanceStatisticsProps) => {
   const data = [
-    { name: "Total Bikes", value: bikes.totalBikes },
-    { name: "Total Sales", value: bikes.totalSales },
-    { name: "Available for Sale", value: bikes.totalAvailableForSale },
+    { name: "Total Request", value: maintenance.totalRequests },
+    { name: "Total Accepted", value: maintenance.totalAccepted },
+    { name: "Total Pending", value: maintenance.totalPending },
   ];
 
   return (
@@ -28,7 +28,7 @@ const BikeStatistics = ({ bikes }: BikeStatisticsProps) => {
       </div>
       <div className="flex lg:flex-row md:flex-row flex-col gap-10 mt-16 justify-center items-center">
         <div className="flex flex-col justify-center items-center w-full lg:w-[45%] md:w-[45%]">
-          <h1 className="text-xl font-bold mb-3">Bike Analytics</h1>
+          <h1 className="text-xl font-bold mb-3">Pet Analytics</h1>
           <AnalyticsChart data={data} />
         </div>
         <div className="flex flex-col justify-center items-center   w-full lg:w-[45%] md:w-[45%]">
@@ -40,4 +40,4 @@ const BikeStatistics = ({ bikes }: BikeStatisticsProps) => {
   );
 };
 
-export default BikeStatistics;
+export default MaintenanceStatistics;

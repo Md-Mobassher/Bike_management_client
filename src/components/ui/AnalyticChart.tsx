@@ -9,13 +9,13 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const BikeAnalyticsChart = ({
+const AnalyticsChart = ({
   data,
 }: {
   data: { name: string; value: number }[];
 }) => {
   return (
-    <ResponsiveContainer width="100%" height={250}>
+    <ResponsiveContainer width="100%" height={300}>
       <BarChart
         width={600}
         height={300}
@@ -38,4 +38,4 @@ const BikeAnalyticsChart = ({
   );
 };
 
-export default BikeAnalyticsChart;
+export default AnalyticsChart;

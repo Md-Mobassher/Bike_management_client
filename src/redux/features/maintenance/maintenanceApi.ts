@@ -56,6 +56,14 @@ const maintenanceApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["maintenance"],
     }),
+
+    getMaintenanceAnalytics: builder.query({
+      query: () => ({
+        url: `/maintenance/analytics`,
+        method: "GET",
+      }),
+      providesTags: ["maintenance"],
+    }),
   }),
 });
 
@@ -64,4 +72,5 @@ export const {
   useGetMyRequestedMaintenanceQuery,
   useRequestMaintenanceMutation,
   useUpdateMaintenanceMutation,
+  useGetMaintenanceAnalyticsQuery,
 } = maintenanceApi;
