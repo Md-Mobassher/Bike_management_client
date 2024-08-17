@@ -61,17 +61,17 @@ const Login = () => {
 
   return (
     <div
-      className="flex justify-center items-center h-[100vh] p-10"
+      className="flex justify-center items-center h-[100vh] lg:p-10 p-4 md:p-8"
       style={{
         backgroundImage:
           "url(https://i.ibb.co/1z94XnJ/lino-9-Pna-Lbcier-E-unsplash-1.jpg)",
         backgroundSize: "cover",
       }}
     >
-      <Card className="w-[360px]">
+      <Card className="w-[94%] md:max-w-[400px]">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center text-green-500">
-            Login Into Bike Management Dashboard
+            Login to Bike Management Dashboard
           </CardTitle>
         </CardHeader>
         <CardContent>

@@ -22,7 +22,7 @@ const DemoCredentialModal: React.FC<DemoCredentialModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white pt-7 pb-10 px-6 rounded-lg w-[90%] md:w-[500px] relative">
+      <div className="bg-white pt-7 pb-10 lg:px-6 px-4 rounded-lg w-[95%] md:w-[500px] relative">
         <button
           onClick={onClose}
           className="absolute top-7 right-6 hover:text-white px-4 py-2 border rounded-md border-gray-300 hover:bg-green-600 "
@@ -35,31 +35,31 @@ const DemoCredentialModal: React.FC<DemoCredentialModalProps> = ({
 
         <div className="mb-6">
           <h3 className="mb-4 text-xl font-bold underline">Seller:</h3>
-          <div className="flex justify-between items-center gap-3 mb-2">
+          <div className="flex justify-between items-center lg:gap-3 md:gap-2 gap-1 mb-2">
             <div className="w-[22%]">
               <p className="">Email: </p>
             </div>
-            <div className="w-[75%] flex justify-between bg-gray-200 px-4 text-primary-400 p-2 rounded-lg">
-              <p>mobassherpautex@gmail.com</p>
+            <div className="w-[75%] flex justify-between bg-gray-200 pl-4 text-primary-400 p-2 overflow-hidden rounded-lg gap-2 text-wrap">
+              <p className="max-w-40">mobassherpautex@gmail.com</p>
               <button
                 onClick={() => copyToClipboard("mobassherpautex@gmail.com")}
-                className="focus:outline-none"
+                className="focus:outline-none "
               >
-                <Copy className="hover:text-green-500 cursor-pointer" />
+                <Copy className="hover:text-green-500 cursor-pointer bg-gray-200" />
               </button>
             </div>
           </div>
-          <div className="flex justify-between items-center gap-3">
+          <div className="flex justify-between items-center lg:gap-3 md:gap-2 gap-1 mb-2">
             <div className="w-[22%]">
               <p>Password: </p>
             </div>
-            <div className="w-[75%] flex justify-between bg-gray-200 px-4 text-primary-400 p-2 rounded-lg">
+            <div className="w-[75%] flex justify-between bg-gray-200 pl-4 text-primary-400 p-2 rounded-lg">
               <p>Mobassher123</p>
               <button
                 onClick={() => copyToClipboard("Mobassher123")}
                 className="focus:outline-none"
               >
-                <Copy className="hover:text-green-500 cursor-pointer" />
+                <Copy className="hover:text-green-500 cursor-pointer bg-gray-200" />
               </button>
             </div>
           </div>
@@ -67,31 +67,31 @@ const DemoCredentialModal: React.FC<DemoCredentialModalProps> = ({
 
         <div>
           <h3 className="mb-4 text-xl font-bold underline">Buyer:</h3>
-          <div className="flex justify-between items-center gap-3 mb-2">
+          <div className="flex justify-between items-center lg:gap-3 md:gap-2 gap-1 mb-2">
             <div className="w-[22%]">
               <p>Email: </p>
             </div>
-            <div className="w-[75%] flex justify-between bg-gray-200 px-4 text-primary-400 p-2 rounded-lg">
+            <div className="w-[75%] flex justify-between bg-gray-200 pl-4 text-primary-400 p-2 rounded-lg">
               <p>raiyan@gmail.com</p>
               <button
                 onClick={() => copyToClipboard("raiyan@gmail.com")}
                 className="focus:outline-none"
               >
-                <Copy className="hover:text-green-500 cursor-pointer" />
+                <Copy className="hover:text-green-500 cursor-pointer bg-gray-200" />
               </button>
             </div>
           </div>
-          <div className="flex justify-between items-center gap-3">
+          <div className="flex justify-between items-center lg:gap-3 md:gap-2 gap-1 mb-2">
             <div className="w-[22%]">
               <p>Password: </p>
             </div>
-            <div className="w-[75%] flex justify-between bg-gray-200 px-4 text-primary-400 p-2 rounded-lg">
+            <div className="w-[75%] flex justify-between bg-gray-200 pl-4 text-primary-400 p-2 rounded-lg">
               <p>Raiyan123</p>
               <button
                 onClick={() => copyToClipboard("Raiyan123")}
                 className="focus:outline-none"
               >
-                <Copy className="hover:text-green-500 cursor-pointer" />
+                <Copy className="hover:text-green-500 cursor-pointer bg-gray-200" />
               </button>
             </div>
           </div>
