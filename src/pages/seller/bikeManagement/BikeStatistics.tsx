@@ -32,7 +32,7 @@ const BikeStatistics = ({ bikes }: BikeStatisticsProps) => {
           <AnalyticsChart data={data} />
         </div>
         <div className="flex flex-col justify-center items-center   w-full lg:w-[45%] md:w-[45%]">
-          <h1 className="text-xl font-bold mb-3">Pet Analytics</h1>
+          <h1 className="text-xl font-bold mb-3">Bike Analytics</h1>
           <AnalyticsPieChart data={data} />
         </div>
       </div>
