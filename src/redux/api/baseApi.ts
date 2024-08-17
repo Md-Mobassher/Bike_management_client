@@ -12,8 +12,8 @@ import { logout, setUser } from "../features/auth/authSlice";
 import { toast } from "sonner";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://bike-management-server.vercel.app/api/v1",
-  // baseUrl: "http://localhost:5000/api/v1",
+  // baseUrl: "https://bike-management-server.vercel.app/api/v1",
+  baseUrl: "http://localhost:5000/api/v1",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -49,8 +49,8 @@ const baseQueryWithRefreshToken: BaseQueryFn<
     console.log("Sending refresh token");
 
     const res = await fetch(
-      "https://bike-management-server.vercel.app/api/v1/auth/refresh-token",
-      // "http://localhost:5000/api/v1/auth/refresh-token",
+      // "https://bike-management-server.vercel.app/api/v1/auth/refresh-token",
+      "http://localhost:5000/api/v1/auth/refresh-token",
       {
         method: "POST",
         credentials: "include",

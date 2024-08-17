@@ -2,6 +2,7 @@ import { Layout } from "antd";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
+import { Toaster } from "sonner";
 const { Content } = Layout;
 
 const MainLayout = () => {
@@ -14,6 +15,7 @@ const MainLayout = () => {
           <Outlet />
         </Content>
       </Layout>
+      <Toaster />
     </Layout>
   );
 };

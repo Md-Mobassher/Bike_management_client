@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { genderOptions, roleOptions } from "@/constant/global";
+import { genderOptions } from "@/constant/global";
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { TRegister } from "@/types/user.type";
 import { Col, Divider, Row } from "antd";
@@ -38,7 +38,7 @@ const Register = () => {
         password: data.password,
         contactNo: data.contactNo,
         gender: data.gender,
-        role: data.role,
+        role: "Buyer",
         dateOfBirth: data.dateOfBirth,
         presentAddress: data.presentAddress,
         permanentAddress: data.permanentAddress,
@@ -124,14 +124,14 @@ const Register = () => {
                       options={genderOptions}
                     />
                   </Col>
-                  <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                  {/* <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                     <BikeSelect
                       label="Role"
                       name="role"
                       placeholder="Your Role"
                       options={roleOptions}
                     />
-                  </Col>
+                  </Col> */}
                   <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                     <BikeDatePicker name="dateOfBirth" label="Date Of Birth" />
                   </Col>

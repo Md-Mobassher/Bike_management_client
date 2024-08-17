@@ -74,6 +74,14 @@ const bikeApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["bike"],
     }),
+
+    getbikeAnalytics: builder.query({
+      query: () => ({
+        url: `/bikes/analytics`,
+        method: "GET",
+      }),
+      providesTags: ["bike"],
+    }),
   }),
 });
 
@@ -85,4 +93,5 @@ export const {
   useUpdateABikeMutation,
   useDeleteABikeMutation,
   useBulkDeleteBikesMutation,
+  useGetbikeAnalyticsQuery,
 } = bikeApi;

@@ -5,7 +5,7 @@ export const genderOptions = genders.map((item) => ({
   label: item,
 }));
 
-export const roles = ["Buyer", "Seller"];
+export const roles = ["Buyer"];
 export const roleOptions = roles.map((item) => ({
   value: item.toLowerCase(),
   label: item,
